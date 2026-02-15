@@ -16,6 +16,16 @@ export default function Nav() {
           </a>
         </li>
         <li>
+          <a href="#certifications" className="no-underline text-muted text-sm transition-colors hover:text-text">
+            Certifications
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="no-underline text-muted text-sm transition-colors hover:text-text">
+            Contact
+          </a>
+        </li>
+        <li>
           <a
             href="/resources/Ajay_Tewari_Resume.pdf"
             target="_blank"

@@ -5,9 +5,10 @@ export default function Hero() {
       <h1 className="text-[clamp(2rem,5vw,3.2rem)] font-bold leading-[1.15] mb-5">
         Ajay Tewari
       </h1>
-      {/* TODO: update tagline */}
       <p className="text-[1.1rem] text-muted max-w-[580px] mb-8">
-        I build [what you build] — replace this with a one-line description of your work and interests.
+        Staff engineer and technical lead building scalable, data-driven systems — architecting
+        conversational AI and distributed platforms, leading cross-functional teams, and shipping
+        production software designed for lasting impact at scale.
       </p>
       <div className="flex gap-4 flex-wrap">
         <a

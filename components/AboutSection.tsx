@@ -30,12 +30,13 @@ export default function AboutSection() {
         <div className="bg-surface border border-border rounded-card p-6">
           <h3 className="text-xs uppercase tracking-widest text-accent mb-3">Background</h3>
           <p className="text-sm text-muted">
-            Senior Software Engineer and Technical Lead with 15+ years of experience building
-            distributed systems and conversational AI. Currently at Roku designing AI agent
-            components — eval pipelines, semantic caching, and multi-turn dialog systems for voice
-            services. Previously led engineering teams at Optimizely and Cisco/Webex delivering
-            scalable billing platforms and order management systems. UC Berkeley–certified in ML &
-            AI (Exemplary Badge) and AWS Certified Cloud Practitioner.
+            Staff engineer and Technical Lead with 17+ years of leading and building at scale.
+            Currently driving architecture and delivery of
+            conversational AI agent systems, eval pipelines, and multi-turn dialog infrastructure
+            for voice services. Previously served as Technical Lead at Optimizely, Cisco/Webex,
+            and Apple, leading teams of 8+ engineers to ship billing platforms, order management
+            systems, and high-throughput data pipelines. Consistently takes ownership from
+            architecture to production.
           </p>
         </div>
         <div className="bg-surface border border-border rounded-card p-6">
