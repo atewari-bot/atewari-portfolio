@@ -21,9 +21,10 @@ export default function Hero() {
         </div>
       </div>
       <p className="text-[1.1rem] text-muted max-w-[580px] mb-8">
-        Staff engineer and technical lead building scalable, data-driven systems — architecting
-        conversational AI and distributed platforms, leading cross-functional teams, and shipping
-        production software designed for lasting impact at scale.
+        Staff Software Engineer with 17 years of experience building large-scale distributed systems
+        and backend services. Expertise in designing scalable, high-availability APIs in Python, Go,
+        and Java, and in building conversational AI and agentic AI systems. Experienced in driving
+        cross-functional initiatives and technical roadmaps to deliver reliable, high-impact platforms.
       </p>
       <div className="flex gap-4 flex-wrap">
         <a
