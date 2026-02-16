@@ -48,6 +48,16 @@ export default function ProjectCard({ project }: { project: Project }) {
               GitHub ↗
             </a>
           )}
+          {project.herokuHref && (
+            <a
+              href={project.herokuHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs px-2.5 py-0.5 rounded-full bg-bg border border-border text-muted no-underline hover:text-accent hover:border-accent transition-colors"
+            >
+              Heroku ↗
+            </a>
+          )}
         </div>
       )}
     </div>

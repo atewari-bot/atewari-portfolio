@@ -5,6 +5,7 @@ export type Project = {
   icon: string
   href: string | null
   githubHref?: string
+  herokuHref?: string
 }
 
 export const projects: Project[] = [
@@ -57,5 +58,6 @@ export const projects: Project[] = [
     icon: '📉',
     href: 'https://gd-racubeai.streamlit.app/',
     githubHref: 'https://github.com/atewari-bot/gradient-descent',
+    herokuHref: 'https://gd-racubeai-b1b476feb921.herokuapp.com',
   },
 ]
