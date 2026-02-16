@@ -1,22 +1,40 @@
 const skills = [
+  // Languages
   'Python',
   'TypeScript / JavaScript',
   'Go',
   'Node.js',
+  'SQL',
+  'Java',
+  // AI
   'Agentic AI & RAG',
+  'Orchestration',
   'Vector Databases',
+  'MCP',
+  'Models Integration',
   'Prompt / Context Engineering',
+  // Cloud
   'AWS',
   'Google Cloud',
+  // Data & Streaming
   'Apache Kafka',
   'Airflow',
   'Redis',
+  // DevOps / MLOps
   'Docker',
   'Kubernetes',
   'Terraform',
+  'MLFlow',
+  'Linux',
+  // Monitoring
+  'Grafana',
+  'Datadog',
+  // Databases
   'DynamoDB',
+  'Oracle',
   'MySQL',
-  'Grafana / Datadog',
+  // Version Control
+  'GitHub / GitLab',
 ]
 
 export default function AboutSection() {
