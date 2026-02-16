@@ -46,7 +46,8 @@ export const projects: Project[] = [
       'Interactive Streamlit app for end-to-end regression analysis — EDA, model fitting, and result visualization through a modular UI. Supports containerized development via devcontainer configuration.',
     tags: ['Python', 'Streamlit', 'Regression', 'EDA'],
     icon: '📊',
-    href: 'https://github.com/atewari-bot/regression-analysis',
+    href: 'https://regression-analysis-racubeai.streamlit.app/',
+    githubHref: 'https://github.com/atewari-bot/regression-analysis',
   },
   {
     title: 'Gradient Descent Visualizer',
