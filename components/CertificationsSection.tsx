@@ -1,4 +1,13 @@
-const certifications = [
+const certifications: {
+  title: string
+  issuer: string
+  date: string | null
+  badge: string | null
+  badgeHref: string | null
+  certHref: string | null
+  links?: { label: string; href: string }[]
+  icon: string
+}[] = [
   {
     title: 'Machine Learning & Artificial Intelligence',
     issuer: 'UC Berkeley',
@@ -53,6 +62,19 @@ const certifications = [
     certHref: 'https://www.credential.net/4b04548e-95e9-48b5-bc3b-d8ed1b063a49#acc.6aWTkUQZ',
     icon: '📡',
   },
+  {
+    title: 'Node.js',
+    issuer: 'LinkedIn Learning',
+    date: null,
+    badge: null,
+    badgeHref: null,
+    certHref: null,
+    links: [
+      { label: 'Essential Training ↗', href: 'https://www.linkedin.com/learning/certificates/2c58be1829baf324745ee6a4190fe8c1da536d787af1a0e6ca0608a4d4515075' },
+      { label: 'Advanced ↗', href: 'https://www.linkedin.com/learning/certificates/f1e3492e886fdc3ebf6fe607cb96171c3d4cc7aabdb781924952cec9e8afeef2' },
+    ],
+    icon: '🟢',
+  },
 ]
 
 export default function CertificationsSection() {
@@ -76,14 +98,28 @@ export default function CertificationsSection() {
               <p className="text-xs text-accent">{cert.issuer}</p>
               {cert.date && <p className="text-xs text-muted">{cert.date}</p>}
               <div className="flex flex-wrap gap-2 mt-2">
-                <a
-                  href={cert.certHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs px-2.5 py-0.5 rounded-full bg-bg border border-border text-muted no-underline hover:text-accent hover:border-accent transition-colors"
-                >
-                  View Certificate ↗
-                </a>
+                {cert.links
+                  ? cert.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs px-2.5 py-0.5 rounded-full bg-bg border border-border text-muted no-underline hover:text-accent hover:border-accent transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ))
+                  : cert.certHref && (
+                      <a
+                        href={cert.certHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs px-2.5 py-0.5 rounded-full bg-bg border border-border text-muted no-underline hover:text-accent hover:border-accent transition-colors"
+                      >
+                        View Certificate ↗
+                      </a>
+                    )}
                 {cert.badge && cert.badgeHref && (
                   <a
                     href={cert.badgeHref}
