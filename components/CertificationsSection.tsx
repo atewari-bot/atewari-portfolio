@@ -27,6 +27,15 @@ const certifications = [
     icon: '🤖',
   },
   {
+    title: 'Introduction to Model Context Protocol',
+    issuer: 'Anthropic Academy',
+    date: null,
+    badge: null,
+    badgeHref: null,
+    certHref: 'https://verify.skilljar.com/c/gan2cu3p6qm7',
+    icon: '🔌',
+  },
+  {
     title: 'AWS for Developers: DynamoDB',
     issuer: 'LinkedIn Learning',
     date: 'Nov 2024',
