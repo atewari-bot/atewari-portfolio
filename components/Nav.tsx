@@ -27,7 +27,7 @@ export default function Nav() {
         </li>
         <li>
           <a
-            href="/resources/Ajay_Tewari_Resume.pdf"
+            href="/resources/Ajay_Tewari.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="no-underline text-muted text-sm transition-colors hover:text-text"

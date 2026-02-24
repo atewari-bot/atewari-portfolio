@@ -21,10 +21,7 @@ export default function Hero() {
         </div>
       </div>
       <p className="text-[1.1rem] text-muted max-w-[580px] mb-8">
-        Staff Software Engineer with 17 years of experience building large-scale distributed systems
-        and backend services. Expertise in designing scalable, high-availability APIs in Python, Go,
-        and Java, and in building conversational AI and agentic AI systems. Experienced in driving
-        cross-functional initiatives and technical roadmaps to deliver reliable, high-impact platforms.
+        Technical lead with 17 years of experience designing and delivering cloud-native microservices, large-scale distributed systems, and AI pipelines on AWS and GCP. Expertise in agentic AI, semantic search, and conversational AI systems using Python, Go, and Java. Proven track record driving cross-functional initiatives and optimizing systems for performance, scalability, and cost efficiency.
       </p>
       <div className="flex gap-4 flex-wrap">
         <a
@@ -34,7 +31,7 @@ export default function Hero() {
           View Projects
         </a>
         <a
-          href="/resources/Ajay_Tewari_Resume.pdf"
+          href="/resources/Ajay_Tewari.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-5 py-2.5 rounded-lg text-sm font-medium no-underline bg-transparent text-text border border-border transition-colors hover:bg-surface"

@@ -1,40 +1,40 @@
-const skills = [
-  // Languages
-  'Python',
-  'TypeScript / JavaScript',
-  'Go',
-  'Node.js',
-  'SQL',
-  'Java',
-  // AI
-  'Agentic AI & RAG',
-  'Orchestration',
-  'Vector Databases',
-  'MCP',
-  'Models Integration',
-  'Prompt / Context Engineering',
-  // Cloud
-  'AWS',
-  'Google Cloud',
-  // Data & Streaming
-  'Apache Kafka',
-  'Airflow',
-  'Redis',
-  // DevOps / MLOps
-  'Docker',
-  'Kubernetes',
-  'Terraform',
-  'MLFlow',
-  'Linux',
-  // Monitoring
-  'Grafana',
-  'Datadog',
-  // Databases
-  'DynamoDB',
-  'Oracle',
-  'MySQL',
-  // Version Control
-  'GitHub / GitLab',
+const skillCategories = [
+  {
+    category: 'Languages',
+    skills: ['Python', 'TypeScript/JavaScript', 'Go', 'Node.js', 'SQL', 'Java'],
+  },
+  {
+    category: 'Artificial Intelligence',
+    skills: ['RAG', 'Agentic AI', 'Orchestration', 'Vector Databases & Semantic Search', 'MCP', 'Models Integration', 'Prompt/Context Engineering', 'Generative AI'],
+  },
+  {
+    category: 'Cloud Platforms',
+    skills: ['AWS', 'Google Cloud Platform'],
+  },
+  {
+    category: 'Data & Streaming',
+    skills: ['Airflow', 'Apache Kafka', 'Redis'],
+  },
+  {
+    category: 'Infrastructure & DevOps/MLOps',
+    skills: ['Docker', 'Terraform', 'Kubernetes', 'MLFlow', 'Linux'],
+  },
+  {
+    category: 'Monitoring & Observability',
+    skills: ['Grafana', 'Datadog'],
+  },
+  {
+    category: 'Databases',
+    skills: ['DynamoDB', 'Oracle', 'MySQL'],
+  },
+  {
+    category: 'Version Control',
+    skills: ['GitHub/GitLab'],
+  },
+  {
+    category: 'Software Architecture & Methodologies',
+    skills: ['Microservices', 'Unit Testing Frameworks', 'Agile Development', 'Software Design', 'Software Development'],
+  },
 ]
 
 export default function AboutSection() {
@@ -58,17 +58,24 @@ export default function AboutSection() {
           </p>
         </div>
         <div className="bg-surface border border-border rounded-card p-6">
-          <h3 className="text-xs uppercase tracking-widest text-accent mb-3">Skills</h3>
-          <ul className="list-none flex flex-wrap gap-1.5 m-0 p-0">
-            {skills.map((skill) => (
-              <li
-                key={skill}
-                className="text-sm text-muted bg-bg border border-border rounded-md px-2.5 py-1"
-              >
-                {skill}
-              </li>
+          <h3 className="text-xs uppercase tracking-widest text-accent mb-4">Technical Skills</h3>
+          <div className="space-y-4">
+            {skillCategories.map((category) => (
+              <div key={category.category}>
+                <h4 className="text-xs font-semibold text-text mb-2">{category.category}</h4>
+                <ul className="list-none flex flex-wrap gap-1.5 m-0 p-0">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="text-sm text-muted bg-bg border border-border rounded-md px-2.5 py-1"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>
