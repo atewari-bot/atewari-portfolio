@@ -21,6 +21,11 @@ export default function Nav() {
           </a>
         </li>
         <li>
+          <a href="#publications" className="no-underline text-muted text-sm transition-colors hover:text-text">
+            Publications
+          </a>
+        </li>
+        <li>
           <a href="#contact" className="no-underline text-muted text-sm transition-colors hover:text-text">
             Contact
           </a>
