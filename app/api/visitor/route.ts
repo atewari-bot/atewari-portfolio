@@ -7,8 +7,8 @@ export async function POST(request: NextRequest) {
     if (!body.name?.trim()) {
       return NextResponse.json({ error: 'Name is required' }, { status: 400 })
     }
-    await recordVisitor(body)
-    return NextResponse.json({ success: true })
+    const result = await recordVisitor(body)
+    return NextResponse.json({ success: true, ...result })
   } catch (err) {
     console.error('Failed to record visitor:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
