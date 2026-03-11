@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import VisitorModal from '@/components/VisitorModal'
 
 export const metadata: Metadata = {
   title: 'Ajay Tewari — Portfolio',
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-bg text-text leading-relaxed">
+        <VisitorModal />
         <Nav />
         <main>{children}</main>
         <Footer />
