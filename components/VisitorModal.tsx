@@ -24,6 +24,12 @@ function parseOS(ua: string): string {
   return 'Unknown'
 }
 
+function getDeviceType(): string {
+  const touch = navigator.maxTouchPoints > 0
+  if (!touch) return 'desktop'
+  return screen.width >= 768 ? 'tablet' : 'mobile'
+}
+
 function buildFingerprint(): string {
   const parts = [
     navigator.userAgent,
@@ -58,15 +64,18 @@ export default function VisitorModal() {
   const [done, setDone] = useState(false)
   const [returning, setReturning] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const mountTimeRef = useRef<number>(0)
 
   // Check sessionStorage on mount
   useEffect(() => {
     try {
       if (!sessionStorage.getItem(STORAGE_KEY)) {
         setVisible(true)
+        mountTimeRef.current = performance.now()
       }
     } catch {
       setVisible(true)
+      mountTimeRef.current = performance.now()
     }
   }, [])
 
@@ -159,6 +168,9 @@ export default function VisitorModal() {
       doNotTrack: navigator.doNotTrack ?? 'unspecified',
       referrer: document.referrer || 'direct',
       fingerprint: buildFingerprint(),
+      deviceType: getDeviceType(),
+      pixelRatio: `${window.devicePixelRatio}x`,
+      timeToSubmit: Math.round(performance.now() - mountTimeRef.current),
     }
 
     try {

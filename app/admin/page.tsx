@@ -16,6 +16,17 @@ function formatDate(raw: string) {
   })
 }
 
+function formatMs(ms: unknown) {
+  if (ms == null) return '—'
+  const n = Number(ms)
+  return n >= 1000 ? `${(n / 1000).toFixed(1)}s` : `${n}ms`
+}
+
+const HEADERS = [
+  '#', 'Name', 'Device', 'Browser', 'OS', 'Country', 'City',
+  'Language', 'Timezone', 'Screen', 'Pixel', 'Time to Submit', 'Returning', 'IP', 'Timestamp',
+]
+
 export default async function AdminPage() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions)
   if (!session.isLoggedIn) redirect('/admin/login')
@@ -23,12 +34,12 @@ export default async function AdminPage() {
   await initAdminDb()
   const visitors = await getAllVisitors()
 
-  const total = visitors.length
-  const unique = new Set(visitors.map(v => v.fingerprint).filter(Boolean)).size
+  const total    = visitors.length
+  const unique   = new Set(visitors.map(v => v.fingerprint).filter(Boolean)).size
   const returning = visitors.filter(v => v.returning_visitor === 1).length
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8">
+    <div className="max-w-[1400px] mx-auto px-6 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -41,9 +52,9 @@ export default async function AdminPage() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
-          { label: 'Total Sessions', value: total },
-          { label: 'Unique Devices', value: unique },
-          { label: 'Return Visits', value: returning },
+          { label: 'Total Sessions',  value: total },
+          { label: 'Unique Devices',  value: unique },
+          { label: 'Return Visits',   value: returning },
         ].map(stat => (
           <div key={stat.label} className="bg-surface border border-border rounded-card p-5">
             <p className="text-3xl font-bold text-accent">{stat.value}</p>
@@ -65,7 +76,7 @@ export default async function AdminPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border text-muted text-xs uppercase tracking-wider">
-                  {['#', 'Name', 'Browser', 'OS', 'Language', 'Timezone', 'Screen', 'Returning', 'Timestamp'].map(h => (
+                  {HEADERS.map(h => (
                     <th key={h} className="px-4 py-3 text-left font-medium whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
@@ -78,20 +89,24 @@ export default async function AdminPage() {
                   >
                     <td className="px-4 py-3 text-muted tabular-nums">{total - i}</td>
                     <td className="px-4 py-3 font-medium text-text whitespace-nowrap">{v.name as string}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap capitalize">{(v.device_type as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.browser as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.os as string) ?? '—'}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.country as string) ?? '—'}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.city as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.language as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.timezone as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.screen_res as string) ?? '—'}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.pixel_ratio as string) ?? '—'}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums">{formatMs(v.time_to_submit)}</td>
                     <td className="px-4 py-3 whitespace-nowrap">
                       {v.returning_visitor === 1
                         ? <span className="text-xs bg-accent-dim text-accent px-2 py-0.5 rounded-full font-medium">Yes</span>
                         : <span className="text-xs text-muted">No</span>
                       }
                     </td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums">
-                      {formatDate(v.visit_time as string)}
-                    </td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums font-mono text-xs">{(v.ip_address as string) ?? '—'}</td>
+                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums">{formatDate(v.visit_time as string)}</td>
                   </tr>
                 ))}
               </tbody>
