@@ -2,7 +2,7 @@ import { createClient, type Client } from '@libsql/client'
 
 let _db: Client | null = null
 
-function getDb(): Client {
+export function getDb(): Client {
   if (!_db) {
     if (!process.env.TURSO_DATABASE_URL) {
       throw new Error('TURSO_DATABASE_URL environment variable is not set')

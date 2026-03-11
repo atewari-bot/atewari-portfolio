@@ -1,4 +1,14 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+
 export default function Nav() {
+  const pathname = usePathname()
+  const isAdmin = pathname.startsWith('/admin')
+
+  const activeBtn = 'no-underline px-3 py-1.5 text-sm font-medium text-white bg-accent rounded-lg hover:opacity-90 transition-opacity'
+  const dimBtn    = 'no-underline px-3 py-1.5 text-sm font-medium text-muted border border-border rounded-lg hover:text-text hover:bg-surface transition-colors'
+
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-8 h-[60px] bg-bg/85 backdrop-blur-[10px] border-b border-border">
       <a href="#" className="font-bold text-[1.1rem] text-accent no-underline">
@@ -41,6 +51,10 @@ export default function Nav() {
           </a>
         </li>
       </ul>
+      <div className="flex items-center gap-2">
+        <a href="/"           className={isAdmin ? activeBtn : dimBtn}>Home</a>
+        <a href="/admin/login" className={isAdmin ? dimBtn : activeBtn}>Admin</a>
+      </div>
     </nav>
   )
 }
