@@ -5,7 +5,6 @@ export type Project = {
   icon: string
   href: string | null
   githubHref?: string
-  herokuHref?: string
 }
 
 export const projects: Project[] = [
@@ -56,8 +55,7 @@ export const projects: Project[] = [
       'Interactive visualization of the gradient descent algorithm on a quadratic function f(x) = x². Adjustable learning rate, iteration count, and starting point with real-time convergence path rendered as connected steps.',
     tags: ['Python', 'Optimization', 'Machine Learning'],
     icon: '📉',
-    href: 'https://gd-racubeai.streamlit.app/',
+    href: 'https://gradient-descent-gamma.vercel.app',
     githubHref: 'https://github.com/atewari-bot/gradient-descent',
-    herokuHref: 'https://gd-racubeai-b1b476feb921.herokuapp.com',
   },
 ]
