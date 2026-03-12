@@ -63,7 +63,7 @@ export async function initDb() {
 }
 
 export interface VisitorData {
-  name: string
+  name?: string
   userAgent?: string
   browser?: string
   os?: string
@@ -89,6 +89,7 @@ export interface VisitorData {
 export interface RecordResult {
   recorded: boolean
   returning: boolean
+  id: number
 }
 
 const SAME_SESSION_WINDOW_MS = 60_000 // 1 minute dedup window
@@ -106,19 +107,25 @@ export async function recordVisitor(data: VisitorData): Promise<RecordResult> {
     if (prior.rows.length > 0) {
       const lastVisitTime = new Date(prior.rows[0].visit_time as string).getTime()
       if (Date.now() - lastVisitTime < SAME_SESSION_WINDOW_MS) {
-        return { recorded: false, returning: true }
+        // Dedup: return the existing row id so client can still patch name
+        const existing = await db.execute({
+          sql: `SELECT id FROM visitors WHERE fingerprint = ? ORDER BY visit_time DESC LIMIT 1`,
+          args: [data.fingerprint],
+        })
+        const id = Number(existing.rows[0]?.id ?? 0)
+        return { recorded: false, returning: true, id }
       }
-      await insert(db, data, 1)
-      return { recorded: true, returning: true }
+      const id = await insert(db, data, 1)
+      return { recorded: true, returning: true, id }
     }
   }
 
-  await insert(db, data, 0)
-  return { recorded: true, returning: false }
+  const id = await insert(db, data, 0)
+  return { recorded: true, returning: false, id }
 }
 
-async function insert(db: ReturnType<typeof getDb>, data: VisitorData, returning: 0 | 1) {
-  await db.execute({
+async function insert(db: ReturnType<typeof getDb>, data: VisitorData, returning: 0 | 1): Promise<number> {
+  const result = await db.execute({
     sql: `
       INSERT INTO visitors
         (name, user_agent, browser, os, screen_res, color_depth, timezone, language,
@@ -127,7 +134,7 @@ async function insert(db: ReturnType<typeof getDb>, data: VisitorData, returning
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     args: [
-      data.name,
+      data.name         ?? '',
       data.userAgent    ?? null,
       data.browser      ?? null,
       data.os           ?? null,
@@ -149,6 +156,15 @@ async function insert(db: ReturnType<typeof getDb>, data: VisitorData, returning
       data.city         ?? null,
       data.region       ?? null,
     ],
+  })
+  return Number(result.lastInsertRowid)
+}
+
+export async function updateVisitor(id: number, name: string, timeToSubmit?: number): Promise<void> {
+  await initDb()
+  await getDb().execute({
+    sql: `UPDATE visitors SET name = ?, time_to_submit = COALESCE(?, time_to_submit) WHERE id = ?`,
+    args: [name, timeToSubmit ?? null, id],
   })
 }
 

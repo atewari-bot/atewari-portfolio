@@ -88,7 +88,7 @@ export default async function AdminPage() {
                     className="border-b border-border last:border-0 hover:bg-surface-hover transition-colors"
                   >
                     <td className="px-4 py-3 text-muted tabular-nums">{total - i}</td>
-                    <td className="px-4 py-3 font-medium text-text whitespace-nowrap">{v.name as string}</td>
+                    <td className="px-4 py-3 font-medium text-text whitespace-nowrap">{(v.name as string) || <span className="text-muted italic">anonymous</span>}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap capitalize">{(v.device_type as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.browser as string) ?? '—'}</td>
                     <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.os as string) ?? '—'}</td>
