@@ -6,7 +6,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   const cardClasses = [
     'bg-surface border border-border rounded-card p-6 flex flex-col gap-3',
     'transition-all duration-200',
-    isPlaceholder ? 'border-dashed opacity-45' : 'hover:border-accent-dim hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]',
+    isPlaceholder ? 'border-dashed opacity-45' : 'hover:border-accent-dim hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(59,130,246,0.12)]',
   ].join(' ')
 
   return (

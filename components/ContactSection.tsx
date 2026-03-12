@@ -33,7 +33,7 @@ export default function ContactSection() {
             href={c.href}
             target={c.href.startsWith('mailto') ? undefined : '_blank'}
             rel={c.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-            className="bg-surface border border-border rounded-card p-6 flex gap-4 items-center no-underline group transition-all duration-200 hover:border-accent-dim hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            className="bg-surface border border-border rounded-card p-6 flex gap-4 items-center no-underline group transition-all duration-200 hover:border-accent-dim hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(59,130,246,0.12)]"
           >
             <div className="w-10 h-10 rounded-lg bg-accent-dim flex items-center justify-center text-xl shrink-0">
               {c.icon}

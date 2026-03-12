@@ -5,27 +5,9 @@ import { sessionOptions, SessionData } from '@/lib/session'
 import { getAllVisitors } from '@/lib/db'
 import { initAdminDb } from '@/lib/admin'
 import AdminActions from './AdminActions'
+import VisitorTable from './VisitorTable'
 
 export const dynamic = 'force-dynamic'
-
-function formatDate(raw: string) {
-  const d = new Date(raw + (raw.endsWith('Z') ? '' : 'Z'))
-  return d.toLocaleString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric',
-    hour: '2-digit', minute: '2-digit', hour12: true,
-  })
-}
-
-function formatMs(ms: unknown) {
-  if (ms == null) return '—'
-  const n = Number(ms)
-  return n >= 1000 ? `${(n / 1000).toFixed(1)}s` : `${n}ms`
-}
-
-const HEADERS = [
-  '#', 'Name', 'Device', 'Browser', 'OS', 'Country', 'City',
-  'Language', 'Timezone', 'Screen', 'Pixel', 'Time to Submit', 'Returning', 'IP', 'Timestamp',
-]
 
 export default async function AdminPage() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions)
@@ -34,8 +16,8 @@ export default async function AdminPage() {
   await initAdminDb()
   const visitors = await getAllVisitors()
 
-  const total    = visitors.length
-  const unique   = new Set(visitors.map(v => v.fingerprint).filter(Boolean)).size
+  const total     = visitors.length
+  const unique    = new Set(visitors.map(v => v.fingerprint).filter(Boolean)).size
   const returning = visitors.filter(v => v.returning_visitor === 1).length
 
   return (
@@ -52,9 +34,9 @@ export default async function AdminPage() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
-          { label: 'Total Sessions',  value: total },
-          { label: 'Unique Devices',  value: unique },
-          { label: 'Return Visits',   value: returning },
+          { label: 'Total Sessions', value: total },
+          { label: 'Unique Devices', value: unique },
+          { label: 'Return Visits',  value: returning },
         ].map(stat => (
           <div key={stat.label} className="bg-surface border border-border rounded-card p-5">
             <p className="text-3xl font-bold text-accent">{stat.value}</p>
@@ -64,56 +46,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-surface border border-border rounded-card overflow-hidden">
-        <div className="px-6 py-4 border-b border-border">
-          <h2 className="font-semibold text-text">All Visits</h2>
-        </div>
-
-        {visitors.length === 0 ? (
-          <p className="text-muted text-sm px-6 py-10 text-center">No visitors yet.</p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border text-muted text-xs uppercase tracking-wider">
-                  {HEADERS.map(h => (
-                    <th key={h} className="px-4 py-3 text-left font-medium whitespace-nowrap">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {visitors.map((v, i) => (
-                  <tr
-                    key={v.id as number}
-                    className="border-b border-border last:border-0 hover:bg-surface-hover transition-colors"
-                  >
-                    <td className="px-4 py-3 text-muted tabular-nums">{total - i}</td>
-                    <td className="px-4 py-3 font-medium text-text whitespace-nowrap">{(v.name as string) || <span className="text-muted italic">anonymous</span>}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap capitalize">{(v.device_type as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.browser as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.os as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.country as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.city as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.language as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.timezone as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.screen_res as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap">{(v.pixel_ratio as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums">{formatMs(v.time_to_submit)}</td>
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      {v.returning_visitor === 1
-                        ? <span className="text-xs bg-accent-dim text-accent px-2 py-0.5 rounded-full font-medium">Yes</span>
-                        : <span className="text-xs text-muted">No</span>
-                      }
-                    </td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums font-mono text-xs">{(v.ip_address as string) ?? '—'}</td>
-                    <td className="px-4 py-3 text-muted whitespace-nowrap tabular-nums">{formatDate(v.visit_time as string)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+      <VisitorTable initialVisitors={visitors as Record<string, unknown>[]} />
     </div>
   )
 }

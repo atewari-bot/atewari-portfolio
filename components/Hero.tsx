@@ -54,16 +54,16 @@ export default function Hero() {
 
       {isResumeOpen && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-green-950/80 z-50 flex items-center justify-center p-4"
           onClick={() => setIsResumeOpen(false)}
         >
           <div
-            className="relative w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden"
+            className="relative w-full max-w-5xl h-[90vh] bg-green-600 rounded-lg overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsResumeOpen(false)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors flex items-center justify-center text-2xl leading-none border-0 cursor-pointer"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-green-900/70 text-white hover:bg-green-900 transition-colors flex items-center justify-center text-2xl leading-none border-0 cursor-pointer"
               aria-label="Close"
             >
               ×

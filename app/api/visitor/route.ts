@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { recordVisitor, updateVisitor, VisitorData } from '@/lib/db'
+import { cookies } from 'next/headers'
+import { getIronSession } from 'iron-session'
+import { sessionOptions, SessionData } from '@/lib/session'
+import { recordVisitor, updateVisitor, deleteVisitors, VisitorData } from '@/lib/db'
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,6 +35,24 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Failed to update visitor:', err)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const session = await getIronSession<SessionData>(cookies(), sessionOptions)
+    if (!session.isLoggedIn) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    const { ids } = await request.json()
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return NextResponse.json({ error: 'ids array is required' }, { status: 400 })
+    }
+    await deleteVisitors(ids.map(Number))
+    return NextResponse.json({ success: true, deleted: ids.length })
+  } catch (err) {
+    console.error('Failed to delete visitors:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

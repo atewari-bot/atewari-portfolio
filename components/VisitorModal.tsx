@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { generateVisitorName, getAnimalEmoji } from '@/lib/visitorNames'
 
 // ─── Browser helpers ────────────────────────────────────────────────────────
 
@@ -46,44 +47,6 @@ function buildFingerprint(): string {
     hash = (hash * 33) ^ char.charCodeAt(0)
   }
   return (hash >>> 0).toString(16)
-}
-
-// ─── Name generator ──────────────────────────────────────────────────────────
-
-const ADJECTIVES = [
-  'Curious', 'Happy', 'Sleepy', 'Bouncy', 'Fuzzy', 'Sneaky', 'Brave', 'Gentle',
-  'Silly', 'Wise', 'Cozy', 'Fluffy', 'Nimble', 'Quirky', 'Dapper', 'Jolly',
-  'Peppy', 'Witty', 'Zesty', 'Perky', 'Chipper', 'Feisty', 'Lucky', 'Misty',
-  'Noble', 'Plucky', 'Sunny', 'Tiny', 'Grumpy', 'Snazzy', 'Wobbly', 'Nifty',
-]
-
-const ANIMALS = [
-  'Panda', 'Fox', 'Otter', 'Raccoon', 'Koala', 'Hedgehog', 'Bunny', 'Penguin',
-  'Capybara', 'Axolotl', 'Quokka', 'Fennec', 'Meerkat', 'Sloth', 'Lemur',
-  'Platypus', 'Narwhal', 'Wombat', 'Chinchilla', 'Tamarin', 'Loris', 'Margay',
-  'Kinkajou', 'Mongoose', 'Wallaby', 'Numbat', 'Blobfish', 'Tapir', 'Okapi',
-]
-
-const ANIMAL_EMOJI: Record<string, string> = {
-  Panda: '🐼', Fox: '🦊', Otter: '🦦', Raccoon: '🦝', Koala: '🐨',
-  Hedgehog: '🦔', Bunny: '🐰', Penguin: '🐧', Capybara: '🐾', Axolotl: '🫧',
-  Quokka: '🐹', Fennec: '🦊', Meerkat: '👀', Sloth: '🦥', Lemur: '🐒',
-  Platypus: '🦆', Narwhal: '🦄', Wombat: '🐾', Chinchilla: '🐭', Tamarin: '🐒',
-  Loris: '🌙', Margay: '🐱', Kinkajou: '🌿', Mongoose: '⚡', Wallaby: '🦘',
-  Numbat: '🐾', Blobfish: '🐟', Tapir: '🌿', Okapi: '🦒',
-}
-
-function generateVisitorName(): string {
-  const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]
-  const animal = ANIMALS[Math.floor(Math.random() * ANIMALS.length)]
-  return `${adj}${animal}`
-}
-
-function getAnimalEmoji(name: string): string {
-  for (const animal of ANIMALS) {
-    if (name.endsWith(animal)) return ANIMAL_EMOJI[animal] ?? '🐾'
-  }
-  return '🐾'
 }
 
 // ─── Session helpers ─────────────────────────────────────────────────────────
@@ -323,8 +286,8 @@ export default function VisitorModal() {
               left: 22,
               width: 13,
               height: 13,
-              background: '#2e3348',
-              border: '1px solid rgba(129,140,248,0.4)',
+              background: '#1a1f2e',
+              border: '1px solid rgba(56,189,248,0.25)',
               borderRight: 'none',
               borderBottom: 'none',
               transform: 'rotate(45deg)',
@@ -333,17 +296,17 @@ export default function VisitorModal() {
 
             {/* Card */}
             <div style={{
-              background: 'linear-gradient(145deg, #2e3348 0%, #272c3f 100%)',
-              border: '1px solid rgba(129,140,248,0.3)',
+              background: 'linear-gradient(145deg, #1a1f2e 0%, #0d1117 100%)',
+              border: '1px solid rgba(56,189,248,0.18)',
               borderRadius: 16,
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(129,140,248,0.06) inset',
+              boxShadow: '0 25px 80px rgba(0,0,0,0.7), 0 0 40px rgba(14,165,233,0.08)',
               overflow: 'hidden',
               position: 'relative',
             }}>
               {/* Accent top bar */}
               <div style={{
                 height: 3,
-                background: 'linear-gradient(90deg, #6366f1, #818cf8, #6366f1)',
+                background: 'linear-gradient(90deg, #0284c7, #38bdf8, #0284c7)',
                 backgroundSize: '200% 100%',
               }} />
 
@@ -351,10 +314,10 @@ export default function VisitorModal() {
                 /* ── Success state ── */
                 <div style={{ padding: '28px 24px', textAlign: 'center' }}>
                   <div style={{ fontSize: 36, marginBottom: 10 }}>{emoji}</div>
-                  <p style={{ margin: 0, fontSize: 17, color: '#818cf8', fontWeight: 700, letterSpacing: '-0.01em' }}>
+                  <p style={{ margin: 0, fontSize: 17, color: '#38bdf8', fontWeight: 700, letterSpacing: '-0.01em' }}>
                     {returning ? `Welcome back, ${finalName}!` : `Welcome, ${finalName}!`}
                   </p>
-                  <p style={{ margin: '6px 0 0', fontSize: 12, color: '#a8b2cc' }}>Enjoy exploring ✓</p>
+                  <p style={{ margin: '6px 0 0', fontSize: 12, color: '#8b949e' }}>Enjoy exploring ✓</p>
                 </div>
               ) : (
                 /* ── Form state ── */
@@ -362,10 +325,10 @@ export default function VisitorModal() {
 
                   {/* Header */}
                   <div style={{ marginBottom: 18 }}>
-                    <p style={{ margin: '0 0 2px', fontSize: 16, fontWeight: 700, color: '#f1f5f9', letterSpacing: '-0.01em' }}>
+                    <p style={{ margin: '0 0 2px', fontSize: 16, fontWeight: 700, color: '#e6edf3', letterSpacing: '-0.01em' }}>
                       👋 Welcome to my portfolio
                     </p>
-                    <p style={{ margin: 0, fontSize: 12, color: '#a8b2cc' }}>
+                    <p style={{ margin: 0, fontSize: 12, color: '#8b949e' }}>
                       You've been assigned a visitor identity
                     </p>
                   </div>
@@ -375,13 +338,13 @@ export default function VisitorModal() {
 
                   {/* Name badge section */}
                   <div style={{
-                    background: 'rgba(99,102,241,0.08)',
-                    border: '1px solid rgba(99,102,241,0.25)',
+                    background: 'rgba(14,165,233,0.07)',
+                    border: '1px solid rgba(56,189,248,0.15)',
                     borderRadius: 12,
                     padding: '14px 16px',
                     marginBottom: 16,
                   }}>
-                    <p style={{ margin: '0 0 10px', fontSize: 11, color: '#a8b2cc', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+                    <p style={{ margin: '0 0 10px', fontSize: 11, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
                       Hello!
                     </p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -393,16 +356,16 @@ export default function VisitorModal() {
                         {emoji}
                       </span>
                       <div>
-                        <p style={{ margin: 0, fontSize: 18, fontWeight: 800, color: '#818cf8', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+                        <p style={{ margin: 0, fontSize: 18, fontWeight: 800, color: '#38bdf8', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                           {generatedName || '…'}
                         </p>
-                        <p style={{ margin: '3px 0 0', fontSize: 11, color: '#a8b2cc' }}>your visitor alias</p>
+                        <p style={{ margin: '3px 0 0', fontSize: 11, color: '#8b949e' }}>your visitor alias</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Input section */}
-                  <p style={{ margin: '0 0 8px', fontSize: 12, color: '#c4cde0' }}>
+                  <p style={{ margin: '0 0 8px', fontSize: 12, color: '#8b949e' }}>
                     Would love to know your real name!
                   </p>
                   <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
@@ -417,18 +380,18 @@ export default function VisitorModal() {
                       autoComplete="off"
                       style={{
                         flex: 1,
-                        background: 'rgba(255,255,255,0.05)',
-                        border: '1px solid #454d66',
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid #30363d',
                         borderRadius: 10,
                         padding: '10px 14px',
                         fontSize: 13,
-                        color: '#e2e8f0',
+                        color: '#e6edf3',
                         outline: 'none',
                         minWidth: 0,
                         transition: 'border-color 0.2s',
                       }}
-                      onFocus={e => { e.target.style.borderColor = 'rgba(129,140,248,0.8)' }}
-                      onBlur={e => { e.target.style.borderColor = '#454d66' }}
+                      onFocus={e => { e.target.style.borderColor = 'rgba(56,189,248,0.7)' }}
+                      onBlur={e => { e.target.style.borderColor = '#30363d' }}
                       onMouseMove={e => e.stopPropagation()}
                     />
                     <button
@@ -436,10 +399,10 @@ export default function VisitorModal() {
                       disabled={submitting}
                       style={{
                         background: name.trim()
-                          ? 'linear-gradient(135deg, #6366f1, #818cf8)'
-                          : 'rgba(99,102,241,0.15)',
-                        color: name.trim() ? '#fff' : '#818cf8',
-                        border: '1px solid rgba(99,102,241,0.45)',
+                          ? 'linear-gradient(135deg, #0284c7, #38bdf8)'
+                          : 'rgba(14,165,233,0.1)',
+                        color: name.trim() ? '#fff' : '#38bdf8',
+                        border: '1px solid rgba(56,189,248,0.35)',
                         borderRadius: 10,
                         padding: '10px 18px',
                         fontSize: 13,
@@ -458,14 +421,14 @@ export default function VisitorModal() {
                   {/* Divider */}
                   <div style={{ height: 1, background: 'rgba(255,255,255,0.04)', marginBottom: 10 }} />
 
-                  <p style={{ margin: 0, fontSize: 11, color: '#a8b2cc', textAlign: 'center', letterSpacing: '0.02em' }}>
+                  <p style={{ margin: 0, fontSize: 11, color: '#8b949e', textAlign: 'center', letterSpacing: '0.02em' }}>
                     Press <kbd style={{
-                      background: 'rgba(255,255,255,0.08)',
-                      border: '1px solid #454d66',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid #30363d',
                       borderRadius: 4,
                       padding: '1px 5px',
                       fontSize: 10,
-                      color: '#a8b2cc',
+                      color: '#8b949e',
                       fontFamily: 'inherit',
                     }}>esc</kbd> to skip
                   </p>
@@ -489,11 +452,11 @@ export default function VisitorModal() {
             display: 'flex',
             alignItems: 'center',
             gap: 7,
-            background: 'linear-gradient(135deg, #2e3348, #272c3f)',
-            border: '1px solid rgba(99,102,241,0.4)',
+            background: 'linear-gradient(135deg, #1a1f2e, #0d1117)',
+            border: '1px solid rgba(56,189,248,0.3)',
             borderRadius: 24,
             padding: '5px 14px 5px 9px',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(99,102,241,0.06) inset',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,165,233,0.06) inset',
             backdropFilter: 'blur(12px)',
             opacity: 0.92,
           }}>
@@ -503,7 +466,7 @@ export default function VisitorModal() {
             <span style={{
               fontSize: 12,
               fontWeight: 700,
-              color: '#818cf8',
+              color: '#38bdf8',
               whiteSpace: 'nowrap',
               letterSpacing: '-0.01em',
             }}>

@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg:              '#24283b',   // medium charcoal — clearly mid-dark, not near-black
-        surface:         '#2e3348',   // card elevation — noticeably above bg
-        'surface-hover': '#383e57',   // hovered card
-        border:          '#454d66',   // crisp, clearly visible borders
-        accent:          '#818cf8',   // indigo-400 — brighter on mid-dark bg
-        'accent-dim':    '#3730a3',   // indigo-800 — icon backgrounds
-        text:            '#e2e8f0',   // near-white — clear on mid-dark
-        muted:           '#a8b2cc',   // noticeably bright muted — readable
+        bg:              '#0d1117',   // deep blue-black — premium dark base
+        surface:         '#161b22',   // card surface — subtle elevation
+        'surface-hover': '#21262d',   // hovered card
+        border:          '#30363d',   // crisp subtle borders
+        accent:          '#4d8fd4',   // muted blue — softer, less glaring
+        'accent-dim':    '#1e3a5f',   // deep blue — icon backgrounds
+        text:            '#e6edf3',   // soft off-white — easy on eyes
+        muted:           '#8b949e',   // warm gray muted
       },
       borderRadius: {
         card: '12px',

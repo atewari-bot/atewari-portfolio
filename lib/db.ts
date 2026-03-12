@@ -174,3 +174,13 @@ export async function getAllVisitors() {
   )
   return result.rows
 }
+
+export async function deleteVisitors(ids: number[]): Promise<void> {
+  if (ids.length === 0) return
+  await initDb()
+  const placeholders = ids.map(() => '?').join(',')
+  await getDb().execute({
+    sql: `DELETE FROM visitors WHERE id IN (${placeholders})`,
+    args: ids,
+  })
+}
