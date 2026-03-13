@@ -184,3 +184,223 @@ export async function deleteVisitors(ids: number[]): Promise<void> {
     args: ids,
   })
 }
+
+// ─── Journal entries ──────────────────────────────────────────────────────────
+
+export async function initJournalDb() {
+  const db = getDb()
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS journal_entries (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      title      TEXT    NOT NULL,
+      body       TEXT,
+      category   TEXT    NOT NULL DEFAULT 'note',
+      tags       TEXT,
+      created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+    )
+  `)
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS journal_reactions (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      entry_id   TEXT    NOT NULL,
+      reaction   TEXT    NOT NULL,
+      visitor_id INTEGER NOT NULL,
+      created_at TEXT    NOT NULL DEFAULT (datetime('now')),
+      UNIQUE(entry_id, visitor_id)
+    )
+  `)
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS visitor_questions (
+      id           INTEGER PRIMARY KEY AUTOINCREMENT,
+      question     TEXT    NOT NULL,
+      visitor_id   INTEGER,
+      visitor_name TEXT,
+      created_at   TEXT    NOT NULL DEFAULT (datetime('now')),
+      answered     INTEGER NOT NULL DEFAULT 0,
+      answer       TEXT
+    )
+  `)
+}
+
+export interface JournalEntryRow {
+  id: number
+  title: string
+  body: string | null
+  category: string
+  tags: string | null
+  created_at: string
+}
+
+export async function createJournalEntry(data: {
+  title: string
+  body?: string
+  category: string
+  tags?: string
+}): Promise<number> {
+  await initJournalDb()
+  const result = await getDb().execute({
+    sql: `INSERT INTO journal_entries (title, body, category, tags) VALUES (?, ?, ?, ?)`,
+    args: [data.title, data.body ?? null, data.category, data.tags ?? null],
+  })
+  return Number(result.lastInsertRowid)
+}
+
+export async function getAllJournalEntries(): Promise<JournalEntryRow[]> {
+  await initJournalDb()
+  const result = await getDb().execute(
+    `SELECT * FROM journal_entries ORDER BY created_at DESC`
+  )
+  return result.rows as unknown as JournalEntryRow[]
+}
+
+export async function deleteJournalEntry(id: number): Promise<void> {
+  await getDb().execute({ sql: `DELETE FROM journal_entries WHERE id = ?`, args: [id] })
+}
+
+// ─── Reactions ────────────────────────────────────────────────────────────────
+
+export interface ReactionCounts {
+  likes: number
+  dislikes: number
+  userReaction: 'like' | 'dislike' | null
+}
+
+export async function toggleReaction(
+  entryId: string,
+  reaction: 'like' | 'dislike',
+  visitorId: number,
+): Promise<ReactionCounts> {
+  await initJournalDb()
+  const db = getDb()
+
+  const existing = await db.execute({
+    sql: `SELECT reaction FROM journal_reactions WHERE entry_id = ? AND visitor_id = ?`,
+    args: [entryId, visitorId],
+  })
+
+  if (existing.rows.length > 0) {
+    const current = existing.rows[0].reaction as string
+    if (current === reaction) {
+      // Same reaction — remove (toggle off)
+      await db.execute({
+        sql: `DELETE FROM journal_reactions WHERE entry_id = ? AND visitor_id = ?`,
+        args: [entryId, visitorId],
+      })
+    } else {
+      // Different reaction — update
+      await db.execute({
+        sql: `UPDATE journal_reactions SET reaction = ? WHERE entry_id = ? AND visitor_id = ?`,
+        args: [reaction, entryId, visitorId],
+      })
+    }
+  } else {
+    await db.execute({
+      sql: `INSERT INTO journal_reactions (entry_id, reaction, visitor_id) VALUES (?, ?, ?)`,
+      args: [entryId, reaction, visitorId],
+    })
+  }
+
+  return getReactionCounts(entryId, visitorId)
+}
+
+export async function getReactionCounts(entryId: string, visitorId?: number): Promise<ReactionCounts> {
+  const db = getDb()
+  const counts = await db.execute({
+    sql: `SELECT reaction, COUNT(*) as cnt FROM journal_reactions WHERE entry_id = ? GROUP BY reaction`,
+    args: [entryId],
+  })
+  let likes = 0, dislikes = 0
+  for (const row of counts.rows) {
+    if (row.reaction === 'like') likes = Number(row.cnt)
+    if (row.reaction === 'dislike') dislikes = Number(row.cnt)
+  }
+  let userReaction: 'like' | 'dislike' | null = null
+  if (visitorId) {
+    const mine = await db.execute({
+      sql: `SELECT reaction FROM journal_reactions WHERE entry_id = ? AND visitor_id = ?`,
+      args: [entryId, visitorId],
+    })
+    if (mine.rows.length > 0) userReaction = mine.rows[0].reaction as 'like' | 'dislike'
+  }
+  return { likes, dislikes, userReaction }
+}
+
+export async function getBulkReactionCounts(
+  entryIds: string[],
+  visitorId?: number,
+): Promise<Map<string, ReactionCounts>> {
+  if (!entryIds.length) return new Map()
+  const db = getDb()
+  const placeholders = entryIds.map(() => '?').join(',')
+
+  const counts = await db.execute({
+    sql: `SELECT entry_id, reaction, COUNT(*) as cnt FROM journal_reactions WHERE entry_id IN (${placeholders}) GROUP BY entry_id, reaction`,
+    args: entryIds,
+  })
+
+  const map = new Map<string, ReactionCounts>()
+  for (const id of entryIds) map.set(id, { likes: 0, dislikes: 0, userReaction: null })
+  for (const row of counts.rows) {
+    const id = row.entry_id as string
+    const r = map.get(id)!
+    if (row.reaction === 'like') r.likes = Number(row.cnt)
+    if (row.reaction === 'dislike') r.dislikes = Number(row.cnt)
+  }
+
+  if (visitorId) {
+    const mine = await db.execute({
+      sql: `SELECT entry_id, reaction FROM journal_reactions WHERE entry_id IN (${placeholders}) AND visitor_id = ?`,
+      args: [...entryIds, visitorId],
+    })
+    for (const row of mine.rows) {
+      const r = map.get(row.entry_id as string)
+      if (r) r.userReaction = row.reaction as 'like' | 'dislike'
+    }
+  }
+
+  return map
+}
+
+// ─── Visitor questions ────────────────────────────────────────────────────────
+
+export interface QuestionRow {
+  id: number
+  question: string
+  visitor_id: number | null
+  visitor_name: string | null
+  created_at: string
+  answered: number
+  answer: string | null
+}
+
+export async function createQuestion(data: {
+  question: string
+  visitorId?: number
+  visitorName?: string
+}): Promise<number> {
+  await initJournalDb()
+  const result = await getDb().execute({
+    sql: `INSERT INTO visitor_questions (question, visitor_id, visitor_name) VALUES (?, ?, ?)`,
+    args: [data.question, data.visitorId ?? null, data.visitorName ?? null],
+  })
+  return Number(result.lastInsertRowid)
+}
+
+export async function getAllQuestions(): Promise<QuestionRow[]> {
+  await initJournalDb()
+  const result = await getDb().execute(
+    `SELECT * FROM visitor_questions ORDER BY created_at DESC`
+  )
+  return result.rows as unknown as QuestionRow[]
+}
+
+export async function deleteQuestion(id: number): Promise<void> {
+  await getDb().execute({ sql: `DELETE FROM visitor_questions WHERE id = ?`, args: [id] })
+}
+
+export async function answerQuestion(id: number, answer: string): Promise<void> {
+  await getDb().execute({
+    sql: `UPDATE visitor_questions SET answered = 1, answer = ? WHERE id = ?`,
+    args: [answer, id],
+  })
+}

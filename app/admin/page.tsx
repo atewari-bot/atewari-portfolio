@@ -2,10 +2,12 @@ import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { sessionOptions, SessionData } from '@/lib/session'
-import { getAllVisitors } from '@/lib/db'
+import { getAllVisitors, getAllQuestions, initJournalDb } from '@/lib/db'
 import { initAdminDb } from '@/lib/admin'
 import AdminActions from './AdminActions'
 import VisitorTable from './VisitorTable'
+import WriteJournalForm from './WriteJournalForm'
+import QuestionsAdmin from './QuestionsAdmin'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,7 +16,11 @@ export default async function AdminPage() {
   if (!session.isLoggedIn) redirect('/admin/login')
 
   await initAdminDb()
-  const visitors = await getAllVisitors()
+  await initJournalDb()
+  const [visitors, questions] = await Promise.all([
+    getAllVisitors(),
+    getAllQuestions(),
+  ])
 
   const total     = visitors.length
   const unique    = new Set(visitors.map(v => v.fingerprint).filter(Boolean)).size
@@ -25,7 +31,7 @@ export default async function AdminPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text">Visitor Dashboard</h1>
+          <h1 className="text-2xl font-bold text-text">Dashboard</h1>
           <p className="text-muted text-sm mt-0.5">Logged in as {session.username}</p>
         </div>
         <AdminActions />
@@ -45,7 +51,13 @@ export default async function AdminPage() {
         ))}
       </div>
 
-      {/* Table */}
+      {/* Journal + Questions row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <WriteJournalForm />
+        <QuestionsAdmin initialQuestions={questions as unknown as Parameters<typeof QuestionsAdmin>[0]['initialQuestions']} />
+      </div>
+
+      {/* Visitor table */}
       <VisitorTable initialVisitors={visitors as Record<string, unknown>[]} />
     </div>
   )

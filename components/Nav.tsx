@@ -16,6 +16,16 @@ export default function Nav() {
       </a>
       <ul className="list-none flex gap-8 m-0 p-0">
         <li>
+          <a href="#journal" className="no-underline text-muted text-sm transition-colors hover:text-text">
+            Journal
+          </a>
+        </li>
+        <li>
+          <a href="#questions" className="no-underline text-muted text-sm transition-colors hover:text-text">
+            Q&amp;A
+          </a>
+        </li>
+        <li>
           <a href="#projects" className="no-underline text-muted text-sm transition-colors hover:text-text">
             Projects
           </a>
