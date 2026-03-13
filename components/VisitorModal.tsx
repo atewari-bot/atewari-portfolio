@@ -593,7 +593,7 @@ export default function VisitorModal() {
 
                   {/* Input section */}
                   <p style={{ margin: '0 0 8px', fontSize: 12, color: '#8b949e' }}>
-                    Would love to know your real name!
+                    What&apos;s your name or alias?
                   </p>
                   <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
                     <input
@@ -601,7 +601,7 @@ export default function VisitorModal() {
                       type="text"
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      placeholder="my name is…"
+                      placeholder="name or alias…"
                       maxLength={40}
                       disabled={submitting}
                       autoComplete="off"
