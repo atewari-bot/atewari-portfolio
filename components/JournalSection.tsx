@@ -25,9 +25,10 @@ const SOURCE_LABEL: Record<string, string> = {
 }
 
 const CATEGORY_COLOR: Record<string, string> = {
-  coding: '#4d8fd4',
-  sports: '#22c55e',
-  note:   '#a78bfa',
+  coding:     '#4d8fd4',
+  sports:     '#22c55e',
+  note:       '#a78bfa',
+  mindspace:  '#f59e0b',
 }
 
 // ─── Compact entry row ────────────────────────────────────────────────────────
@@ -166,7 +167,15 @@ interface PageData {
 
 const PAGE_SIZES = [10, 20, 50]
 
+type Tab = 'feed' | 'mindspace'
+
+const TABS: { id: Tab; label: string; icon: string }[] = [
+  { id: 'feed',      label: 'Feed',      icon: '⚡' },
+  { id: 'mindspace', label: 'Mindspace', icon: '🧠' },
+]
+
 export default function JournalSection() {
+  const [tab, setTab]           = useState<Tab>('feed')
   const [data, setData]         = useState<PageData | null>(null)
   const [loading, setLoading]   = useState(true)
   const [page, setPage]         = useState(1)
@@ -182,13 +191,14 @@ export default function JournalSection() {
     } catch { /* */ }
   }, [])
 
-  const load = useCallback(async (p: number, ps: number, isRefresh = false) => {
+  const load = useCallback(async (p: number, ps: number, t: Tab, isRefresh = false) => {
     if (isRefresh) setRefreshing(true)
     else setLoading(true)
     try {
       const vid = visitorIdRef.current
       const params = new URLSearchParams({ page: String(p), pageSize: String(ps) })
       if (vid) params.set('visitorId', String(vid))
+      if (t === 'mindspace') params.set('source', 'manual')
       const res = await fetch(`/api/journal?${params}`)
       if (res.ok) setData(await res.json())
     } catch { /* */ } finally {
@@ -197,7 +207,10 @@ export default function JournalSection() {
     }
   }, [])
 
-  useEffect(() => { load(page, pageSize) }, [load, page, pageSize])
+  useEffect(() => { load(page, pageSize, tab) }, [load, page, pageSize, tab])
+
+  // Reset to page 1 when switching tabs
+  useEffect(() => { setPage(1); setData(null) }, [tab])
 
   const handleReact = useCallback(async (entryId: string, reaction: 'like' | 'dislike') => {
     const vid = visitorIdRef.current
@@ -247,25 +260,49 @@ export default function JournalSection() {
       {/* Header */}
       <div className="flex items-center gap-4 mb-5">
         <h2 className="text-2xl font-bold">Journal</h2>
+
+        {/* Tab switcher */}
+        <div style={{ display: 'flex', gap: 2, background: '#161b22', border: '1px solid #30363d', borderRadius: 8, padding: 3 }}>
+          {TABS.map(t => (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              style={{
+                background: tab === t.id ? '#4d8fd4' : 'none',
+                border: 'none', borderRadius: 6,
+                padding: '4px 12px', cursor: 'pointer',
+                color: tab === t.id ? '#fff' : '#8b949e',
+                fontSize: 12, fontWeight: tab === t.id ? 600 : 400,
+                transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: 5,
+              }}
+            >
+              <span>{t.icon}</span>
+              {t.label}
+            </button>
+          ))}
+        </div>
+
         <div className="flex-1 h-px bg-border" />
 
-        {/* Sources */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Sources:</span>
-          <span style={{
-            fontSize: 10, fontWeight: 700, color: '#4d8fd4',
-            background: 'rgba(77,143,212,0.1)', border: '1px solid rgba(77,143,212,0.25)',
-            borderRadius: 99, padding: '2px 8px',
-          }}>● GitHub</span>
-          <span style={{
-            fontSize: 10, color: '#8b949e', background: '#161b22',
-            border: '1px solid #30363d', borderRadius: 99, padding: '2px 8px',
-          }}>○ Strava <span style={{ opacity: 0.5 }}>soon</span></span>
-        </div>
+        {/* Sources (feed only) */}
+        {tab === 'feed' && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Sources:</span>
+            <span style={{
+              fontSize: 10, fontWeight: 700, color: '#4d8fd4',
+              background: 'rgba(77,143,212,0.1)', border: '1px solid rgba(77,143,212,0.25)',
+              borderRadius: 99, padding: '2px 8px',
+            }}>● GitHub</span>
+            <span style={{
+              fontSize: 10, color: '#8b949e', background: '#161b22',
+              border: '1px solid #30363d', borderRadius: 99, padding: '2px 8px',
+            }}>○ Strava <span style={{ opacity: 0.5 }}>soon</span></span>
+          </div>
+        )}
 
         {/* Refresh */}
         <button
-          onClick={() => load(page, pageSize, true)}
+          onClick={() => load(page, pageSize, tab, true)}
           disabled={refreshing}
           style={{
             background: 'none', border: '1px solid #30363d', borderRadius: 6,
@@ -307,8 +344,11 @@ export default function JournalSection() {
             ))}
           </div>
         ) : !data?.entries.length ? (
-          <div style={{ padding: '32px', textAlign: 'center', color: '#8b949e', fontSize: 13 }}>
-            No entries found.
+          <div style={{ padding: '40px 32px', textAlign: 'center', color: '#8b949e', fontSize: 13 }}>
+            {tab === 'mindspace'
+              ? <><div style={{ fontSize: 28, marginBottom: 10 }}>🧠</div><div>No mindspace entries yet.</div></>
+              : 'No entries found.'
+            }
           </div>
         ) : (
           data.entries.map(entry => (

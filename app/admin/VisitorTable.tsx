@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 type Visitor = Record<string, unknown>
 
-const PAGE_SIZES = [20, 50, 100] as const
+const PAGE_SIZES = [10, 20, 50, 100] as const
 
 function formatDate(raw: string) {
   const d = new Date(raw + (raw.endsWith('Z') ? '' : 'Z'))
@@ -28,7 +28,7 @@ const HEADERS = [
 export default function VisitorTable({ initialVisitors }: { initialVisitors: Visitor[] }) {
   const [rows, setRows]           = useState<Visitor[]>(initialVisitors)
   const [page, setPage]           = useState(1)
-  const [pageSize, setPageSize]   = useState<typeof PAGE_SIZES[number]>(20)
+  const [pageSize, setPageSize]   = useState<typeof PAGE_SIZES[number]>(10)
   const [selected, setSelected]   = useState<Set<number>>(new Set())
   const [deleting, setDeleting]   = useState(false)
 
