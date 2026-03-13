@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { relativeTime } from '@/lib/utils'
 
 interface Question {
   id: number
@@ -9,17 +10,6 @@ interface Question {
   created_at: string
   answered: number
   answer: string | null
-}
-
-function rel(iso: string): string {
-  const m = Math.floor((Date.now() - new Date(iso).getTime()) / 60_000)
-  if (m < 1)   return 'just now'
-  if (m < 60)  return `${m}m ago`
-  const h = Math.floor(m / 60)
-  if (h < 24)  return `${h}h ago`
-  const d = Math.floor(h / 24)
-  if (d < 30)  return `${d}d ago`
-  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 // ─── Answer overlay ───────────────────────────────────────────────────────────
@@ -75,7 +65,7 @@ function AnswerOverlay({ question, onClose }: { question: Question; onClose: () 
           <p style={{ margin: '0 0 6px', fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>Question</p>
           <p style={{ margin: 0, fontSize: 15, color: '#e6edf3', fontWeight: 600, lineHeight: 1.5 }}>{question.question}</p>
           <p style={{ margin: '6px 0 0', fontSize: 11, color: '#8b949e' }}>
-            {question.visitor_name ? `— ${question.visitor_name}` : '— Anonymous'} · {rel(question.created_at)}
+            {question.visitor_name ? `— ${question.visitor_name}` : '— Anonymous'} · {relativeTime(question.created_at)}
           </p>
         </div>
 
@@ -150,7 +140,7 @@ function QuestionRow({ q, onExpand }: { q: Question; onExpand: () => void }) {
 
       {/* Right: timestamp + expand */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <span style={{ fontSize: 10, color: '#8b949e' }}>{rel(q.created_at)}</span>
+        <span style={{ fontSize: 10, color: '#8b949e' }}>{relativeTime(q.created_at)}</span>
         {q.answered && (
           <button
             onClick={onExpand}

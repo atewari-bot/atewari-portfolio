@@ -2,19 +2,9 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react'
 import type { JournalEntry } from '@/lib/journal'
+import { relativeTime } from '@/lib/utils'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-
-function rel(iso: string): string {
-  const m = Math.floor((Date.now() - new Date(iso).getTime()) / 60_000)
-  if (m < 1)   return 'just now'
-  if (m < 60)  return `${m}m`
-  const h = Math.floor(m / 60)
-  if (h < 24)  return `${h}h`
-  const d = Math.floor(h / 24)
-  if (d < 30)  return `${d}d`
-  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-}
 
 function entryDate(iso: string): { day: string; date: string; tz: string } {
   const d = new Date(iso)
@@ -133,7 +123,7 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
 
       {/* Right: relative time + reactions */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-        <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{rel(entry.timestamp)}</span>
+        <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
 
         {/* Like */}
         <button
