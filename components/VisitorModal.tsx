@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { generateVisitorName, getAnimalEmoji } from '@/lib/visitorNames'
+import PusherJS from 'pusher-js'
+import type { PresenceChannel } from 'pusher-js'
 
 // ─── Browser helpers ────────────────────────────────────────────────────────
 
@@ -77,6 +79,16 @@ function writeSession(entry: SessionEntry) {
   try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(entry)) } catch { /* private browsing */ }
 }
 
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+interface RemoteCursor {
+  id: string
+  name: string
+  emoji: string
+  x: number   // 0–1 fraction of sender's viewport width
+  y: number   // 0–1 fraction of sender's viewport height
+}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function VisitorModal() {
@@ -89,14 +101,135 @@ export default function VisitorModal() {
   const [returning, setReturning] = useState(false)
   const [browsingName, setBrowsingName] = useState<string | null>(null)
   const [browsingPos, setBrowsingPos] = useState({ x: -999, y: -999 })
+  const [remoteCursors, setRemoteCursors] = useState<Map<string, RemoteCursor>>(new Map())
+  const [visitorId, setVisitorId] = useState<number | null>(null)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const mountTimeRef = useRef<number>(0)
   const visitorIdRef = useRef<number | null>(null)
+  const pusherRef = useRef<PusherJS | null>(null)
+  const channelRef = useRef<PresenceChannel | null>(null)
+  const lastBroadcastRef = useRef<number>(0)
+  // Always up-to-date name/emoji refs for use inside event handlers
+  const displayNameRef = useRef<string>('')
+  const emojiRef = useRef<string>('👤')
+
+  // ── Pusher connection ──────────────────────────────────────────────────────
+
+  const connectToPusher = useCallback((id: number) => {
+    if (pusherRef.current) return
+    const key = process.env.NEXT_PUBLIC_PUSHER_KEY
+    const cluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER
+    if (!key || !cluster) return  // not configured — feature disabled
+
+    const pusher = new PusherJS(key, {
+      cluster,
+      channelAuthorization: {
+        endpoint: '/api/pusher/auth',
+        transport: 'ajax',
+        // customHandler lets us send JSON (including user_info) to the auth endpoint
+        customHandler: async (params, callback) => {
+          try {
+            const res = await fetch('/api/pusher/auth', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                socket_id: params.socketId,
+                channel_name: params.channelName,
+                user_id: String(id),
+                user_info: { name: displayNameRef.current, emoji: emojiRef.current },
+              }),
+            })
+            const data = await res.json()
+            callback(null, data)
+          } catch (e) {
+            callback(new Error('Pusher auth failed'), null)
+          }
+        },
+      },
+    })
+
+    const channel = pusher.subscribe('presence-portfolio-cursors') as PresenceChannel
+
+    // Receive another visitor's cursor move
+    channel.bind('client-cursor-moved', (data: {
+      userId: string; name: string; emoji: string; x: number; y: number
+    }) => {
+      if (data.userId === String(id)) return  // own echo — ignore
+      setRemoteCursors(prev => {
+        const next = new Map(prev)
+        next.set(data.userId, {
+          id: data.userId,
+          name: data.name,
+          emoji: data.emoji,
+          x: data.x,
+          y: data.y,
+        })
+        return next
+      })
+    })
+
+    // Clean up stale cursor when visitor disconnects
+    channel.bind('pusher:member_removed', (member: { id: string }) => {
+      setRemoteCursors(prev => {
+        const next = new Map(prev)
+        next.delete(String(member.id))
+        return next
+      })
+    })
+
+    pusherRef.current = pusher
+    channelRef.current = channel
+  }, [])
+
+  // ── Broadcast own cursor ───────────────────────────────────────────────────
+
+  const broadcastCursor = useCallback((e: MouseEvent) => {
+    const now = Date.now()
+    if (now - lastBroadcastRef.current < 50) return   // max ~20fps
+    if (!channelRef.current) return
+    lastBroadcastRef.current = now
+
+    try {
+      channelRef.current.trigger('client-cursor-moved', {
+        userId: String(visitorIdRef.current),
+        name: displayNameRef.current,
+        emoji: emojiRef.current,
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      })
+    } catch { /* Pusher rate-limit — silent */ }
+  }, [])
+
+  // Start broadcasting once we have a visitor ID
+  useEffect(() => {
+    if (!visitorId) return
+    window.addEventListener('mousemove', broadcastCursor)
+    return () => window.removeEventListener('mousemove', broadcastCursor)
+  }, [visitorId, broadcastCursor])
+
+  // Keep displayNameRef in sync with browsingName (final submitted/generated name)
+  useEffect(() => {
+    if (browsingName) displayNameRef.current = browsingName
+  }, [browsingName])
+
+  // Cleanup Pusher on unmount
+  useEffect(() => {
+    return () => {
+      channelRef.current?.unbind_all()
+      pusherRef.current?.disconnect()
+    }
+  }, [])
+
+  // ── Record visitor ─────────────────────────────────────────────────────────
 
   const recordAnonymous = useCallback(async () => {
     mountTimeRef.current = performance.now()
     const assigned = generateVisitorName()
+    const assignedEmoji = getAnimalEmoji(assigned)
     setGeneratedName(assigned)
+    displayNameRef.current = assigned
+    emojiRef.current = assignedEmoji
 
     const ua = navigator.userAgent
     const payload = {
@@ -126,19 +259,27 @@ export default function VisitorModal() {
       const json = await res.json()
       if (json.id) {
         visitorIdRef.current = json.id
+        setVisitorId(json.id)
         writeSession({ id: json.id, done: false })
+        connectToPusher(json.id)
       }
       if (json.returning) setReturning(true)
     } catch { /* fail silently */ }
 
     setVisible(true)
-  }, [])
+  }, [connectToPusher])
 
   useEffect(() => {
     const existing = readSession()
-    if (existing) return
+    if (existing) {
+      // Returning visitor — still connect to Pusher for cursor sharing
+      visitorIdRef.current = existing.id
+      setVisitorId(existing.id)
+      connectToPusher(existing.id)
+      return
+    }
     recordAnonymous()
-  }, [recordAnonymous])
+  }, [recordAnonymous, connectToPusher])
 
   // Dev-only: Ctrl+Shift+V resets
   useEffect(() => {
@@ -153,7 +294,13 @@ export default function VisitorModal() {
         setVisible(false)
         setReturning(false)
         setBrowsingName(null)
+        setVisitorId(null)
+        setRemoteCursors(new Map())
         visitorIdRef.current = null
+        channelRef.current?.unbind_all()
+        pusherRef.current?.disconnect()
+        pusherRef.current = null
+        channelRef.current = null
         recordAnonymous()
       }
     }
@@ -247,6 +394,10 @@ export default function VisitorModal() {
       writeSession({ id, done: true })
     }
 
+    // Update display name refs so Pusher broadcasts the real name going forward
+    displayNameRef.current = trimmed
+    emojiRef.current = getAnimalEmoji(generatedName)
+
     setDone(true)
     setTimeout(() => {
       setBrowsingName(trimmed)
@@ -259,6 +410,57 @@ export default function VisitorModal() {
 
   return (
     <>
+      {/* ── Remote cursors ── */}
+      {Array.from(remoteCursors.values()).map(cursor => (
+        <div
+          key={cursor.id}
+          style={{
+            position: 'fixed',
+            left: `${cursor.x * 100}vw`,
+            top: `${cursor.y * 100}vh`,
+            zIndex: 9997,
+            pointerEvents: 'none',
+            transition: 'left 60ms linear, top 60ms linear',
+          }}
+        >
+          {/* Cursor arrow */}
+          <svg
+            width="14"
+            height="18"
+            viewBox="0 0 14 18"
+            fill="none"
+            style={{ display: 'block', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))' }}
+          >
+            <path
+              d="M0 0L0 14L3.5 10.5L6.5 17L8.5 16L5.5 9.5L10 9.5Z"
+              fill="#38bdf8"
+              stroke="#0d1117"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {/* Name badge */}
+          <div style={{
+            background: 'linear-gradient(135deg, #1a1f2e, #0d1117)',
+            border: '1px solid rgba(56,189,248,0.3)',
+            borderRadius: 20,
+            padding: '3px 10px 3px 7px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            marginTop: 2,
+            marginLeft: 6,
+            whiteSpace: 'nowrap',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+          }}>
+            <span style={{ fontSize: 12, lineHeight: 1 }}>{cursor.emoji}</span>
+            <span style={{ fontSize: 11, color: '#38bdf8', fontWeight: 700, letterSpacing: '-0.01em' }}>
+              {cursor.name}
+            </span>
+          </div>
+        </div>
+      ))}
+
       {/* ── Modal ── */}
       {visible && (
         <div
