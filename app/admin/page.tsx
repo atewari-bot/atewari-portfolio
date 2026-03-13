@@ -8,6 +8,7 @@ import AdminActions from './AdminActions'
 import VisitorTable from './VisitorTable'
 import WriteJournalForm from './WriteJournalForm'
 import QuestionsAdmin from './QuestionsAdmin'
+import TokenAlerts from './TokenAlerts'
 
 export const dynamic = 'force-dynamic'
 
@@ -36,6 +37,9 @@ export default async function AdminPage() {
         </div>
         <AdminActions />
       </div>
+
+      {/* Token health alerts */}
+      <TokenAlerts />
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">

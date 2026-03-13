@@ -16,6 +16,16 @@ function rel(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
+function entryDate(iso: string): { day: string; date: string; tz: string } {
+  const d = new Date(iso)
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  return {
+    day:  d.toLocaleDateString('en-US', { weekday: 'short' }),
+    date: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    tz,
+  }
+}
+
 const SOURCE_LABEL: Record<string, string> = {
   github_push:   'push',
   github_pr:     'pr',
@@ -42,11 +52,12 @@ interface EntryRowProps {
 function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
   const color  = CATEGORY_COLOR[entry.category] ?? '#8b949e'
   const repo   = entry.repo?.split('/')[1] ?? ''
+  const { day, date, tz } = entryDate(entry.timestamp)
 
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: '1fr auto',
+      gridTemplateColumns: '1fr auto auto',
       alignItems: 'center',
       gap: 12,
       padding: '8px 14px',
@@ -114,7 +125,13 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
         ))}
       </div>
 
-      {/* Right: timestamp + reactions */}
+      {/* Date column */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
+        <span style={{ fontSize: 10, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
+        <span style={{ fontSize: 10, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
+      </div>
+
+      {/* Right: relative time + reactions */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
         <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{rel(entry.timestamp)}</span>
 
@@ -323,11 +340,12 @@ export default function JournalSection() {
 
         {/* Column header */}
         <div style={{
-          display: 'grid', gridTemplateColumns: '1fr auto', gap: 12,
+          display: 'grid', gridTemplateColumns: '1fr auto auto', gap: 12,
           padding: '6px 14px', borderBottom: '1px solid #30363d',
           background: '#161b22',
         }}>
           <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Entry</span>
+          <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em', paddingRight: 12 }}>Date</span>
           <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Time · Reactions</span>
         </div>
 
