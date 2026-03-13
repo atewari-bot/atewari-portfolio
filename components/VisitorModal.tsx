@@ -63,6 +63,8 @@ const TOOLTIP_W = 200
 interface SessionEntry {
   id: number
   done: boolean
+  name?: string
+  emoji?: string
 }
 
 function readSession(): SessionEntry | null {
@@ -151,10 +153,23 @@ export default function VisitorModal() {
 
     const channel = pusher.subscribe('presence-portfolio-cursors') as PresenceChannel
 
+    channel.bind('pusher:subscription_succeeded', () => {
+      console.log('[Pusher] ✅ Subscribed to presence channel, member count:', (channel as any).members?.count)
+    })
+
+    channel.bind('pusher:subscription_error', (err: unknown) => {
+      console.error('[Pusher] ❌ Subscription failed:', err)
+    })
+
+    pusher.connection.bind('state_change', ({ current }: { current: string }) => {
+      console.log('[Pusher] connection state →', current)
+    })
+
     // Receive another visitor's cursor move
     channel.bind('client-cursor-moved', (data: {
       userId: string; name: string; emoji: string; x: number; y: number
     }) => {
+      console.log('[Pusher] cursor event from', data.userId, data.name)
       if (data.userId === String(id)) return  // own echo — ignore
       setRemoteCursors(prev => {
         const next = new Map(prev)
@@ -171,6 +186,7 @@ export default function VisitorModal() {
 
     // Clean up stale cursor when visitor disconnects
     channel.bind('pusher:member_removed', (member: { id: string }) => {
+      console.log('[Pusher] member removed:', member.id)
       setRemoteCursors(prev => {
         const next = new Map(prev)
         next.delete(String(member.id))
@@ -191,14 +207,15 @@ export default function VisitorModal() {
     lastBroadcastRef.current = now
 
     try {
-      channelRef.current.trigger('client-cursor-moved', {
+      const ok = channelRef.current.trigger('client-cursor-moved', {
         userId: String(visitorIdRef.current),
         name: displayNameRef.current,
         emoji: emojiRef.current,
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       })
-    } catch { /* Pusher rate-limit — silent */ }
+      if (!ok) console.warn('[Pusher] trigger returned false — channel not yet subscribed or client events disabled')
+    } catch (err) { console.error('[Pusher] trigger error:', err) }
   }, [])
 
   // Start broadcasting once we have a visitor ID
@@ -260,7 +277,7 @@ export default function VisitorModal() {
       if (json.id) {
         visitorIdRef.current = json.id
         setVisitorId(json.id)
-        writeSession({ id: json.id, done: false })
+        writeSession({ id: json.id, done: false, name: assigned, emoji: assignedEmoji })
         connectToPusher(json.id)
       }
       if (json.returning) setReturning(true)
@@ -272,9 +289,15 @@ export default function VisitorModal() {
   useEffect(() => {
     const existing = readSession()
     if (existing) {
-      // Returning visitor — still connect to Pusher for cursor sharing
+      // Restore identity from session so Pusher broadcasts the correct name
       visitorIdRef.current = existing.id
       setVisitorId(existing.id)
+      if (existing.name) {
+        displayNameRef.current = existing.name
+        emojiRef.current = existing.emoji ?? '👤'
+        setGeneratedName(existing.name)
+        setBrowsingName(existing.name)
+      }
       connectToPusher(existing.id)
       return
     }
@@ -367,7 +390,8 @@ export default function VisitorModal() {
 
   function skip() {
     const id = visitorIdRef.current
-    if (id) writeSession({ id, done: true })
+    const skipEmoji = getAnimalEmoji(generatedName)
+    if (id) writeSession({ id, done: true, name: generatedName, emoji: skipEmoji })
     setBrowsingName(generatedName)
     setVisible(false)
   }
@@ -391,7 +415,8 @@ export default function VisitorModal() {
           }),
         })
       } catch { /* fail silently */ }
-      writeSession({ id, done: true })
+      const finalEmoji = getAnimalEmoji(generatedName)
+      writeSession({ id, done: true, name: trimmed, emoji: finalEmoji })
     }
 
     // Update display name refs so Pusher broadcasts the real name going forward
