@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import LeftNav, { type PortfolioView } from './LeftNav'
+import Breadcrumb from './Breadcrumb'
 import Hero from './Hero'
 import ProjectsSection from './ProjectsSection'
 import AboutSection from './AboutSection'
@@ -26,6 +27,12 @@ export default function PortfolioLayout() {
 
       {/* div (not main) — root layout already wraps everything in <main> */}
       <div className="lg:pl-[220px] pb-16 lg:pb-0 min-h-screen">
+        <Breadcrumb items={
+          view === 'journal'
+            ? [{ label: 'Home', href: '/' }, { label: 'Journal' }]
+            : [{ label: 'Home' }]
+        } />
+
         {view === 'home' ? (
           <>
             <Hero />
