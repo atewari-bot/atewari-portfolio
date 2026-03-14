@@ -37,7 +37,7 @@ export default function Hero() {
             View Resume
           </button>
           <a
-            href="/resources/Ajay_Tewari.pdf"
+            href="/resources/Ajay_Tewari_Portfolio.pdf"
             download
             className="inline-block px-5 py-2.5 rounded-lg text-sm font-medium no-underline bg-transparent text-text border border-border transition-colors hover:bg-surface"
           >
@@ -69,7 +69,7 @@ export default function Hero() {
               ×
             </button>
             <iframe
-              src="/resources/Ajay_Tewari.pdf"
+              src="/resources/Ajay_Tewari_Portfolio.pdf"
               className="w-full h-full"
               title="Resume"
             />
