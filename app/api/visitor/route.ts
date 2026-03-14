@@ -2,8 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { getIronSession } from 'iron-session'
 import { sessionOptions, SessionData } from '@/lib/session'
-import { recordVisitor, updateVisitor, deleteVisitors, VisitorData } from '@/lib/db'
+import { recordVisitor, updateVisitor, deleteVisitors, getAllVisitors, VisitorData } from '@/lib/db'
 import { logger } from '@/lib/logger'
+
+// GET — admin-only, returns all visitor records
+export async function GET() {
+  try {
+    const session = await getIronSession<SessionData>(cookies(), sessionOptions)
+    if (!session.isLoggedIn) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    const visitors = await getAllVisitors()
+    return NextResponse.json({ visitors })
+  } catch (err) {
+    logger.error('visitor', 'Failed to fetch visitors', err)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
 
 // POST — record a new visitor session (called by VisitorModal on first load)
 export async function POST(request: NextRequest) {

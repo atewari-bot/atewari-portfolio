@@ -6,6 +6,26 @@ type Visitor = Record<string, unknown>
 
 const PAGE_SIZES = [10, 20, 50, 100] as const
 
+function RefreshIcon({ spinning }: { spinning: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={spinning ? 'animate-spin' : ''}
+    >
+      <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+      <path d="M21 3v5h-5" />
+    </svg>
+  )
+}
+
 function formatDate(raw: string) {
   const d = new Date(raw + (raw.endsWith('Z') ? '' : 'Z'))
   return d.toLocaleString('en-US', {
@@ -31,6 +51,27 @@ export default function VisitorTable({ initialVisitors }: { initialVisitors: Vis
   const [pageSize, setPageSize]   = useState<typeof PAGE_SIZES[number]>(10)
   const [selected, setSelected]   = useState<Set<number>>(new Set())
   const [deleting, setDeleting]   = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const total     = rows.length
+  const unique    = new Set(rows.map(v => v.fingerprint).filter(Boolean)).size
+  const returning = rows.filter(v => v.returning_visitor === 1).length
+
+  async function refresh() {
+    setRefreshing(true)
+    try {
+      const res = await fetch('/api/visitor')
+      if (!res.ok) throw new Error('Fetch failed')
+      const { visitors } = await res.json()
+      setRows(visitors)
+      setPage(1)
+      setSelected(new Set())
+    } catch {
+      alert('Failed to refresh visitor data. Please try again.')
+    } finally {
+      setRefreshing(false)
+    }
+  }
 
   const totalPages  = Math.max(1, Math.ceil(rows.length / pageSize))
   const safePage    = Math.min(page, totalPages)
@@ -88,14 +129,31 @@ export default function VisitorTable({ initialVisitors }: { initialVisitors: Vis
     <div className="bg-surface border border-border rounded-card overflow-hidden">
       {/* Table toolbar */}
       <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <h2 className="font-semibold text-text">All Visits</h2>
           <span className="text-xs text-muted bg-bg border border-border rounded-full px-2.5 py-0.5">
-            {rows.length} total
+            {total} sessions
+          </span>
+          <span className="text-xs text-muted bg-bg border border-border rounded-full px-2.5 py-0.5">
+            {unique} unique
+          </span>
+          <span className="text-xs text-muted bg-bg border border-border rounded-full px-2.5 py-0.5">
+            {returning} returning
           </span>
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Refresh button */}
+          <button
+            onClick={refresh}
+            disabled={refreshing}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-bg border border-border text-muted hover:text-text hover:bg-surface-hover transition-colors disabled:opacity-50"
+            title="Refresh visitor data"
+          >
+            <RefreshIcon spinning={refreshing} />
+            {refreshing ? 'Refreshing…' : 'Refresh'}
+          </button>
+
           {/* Delete selected */}
           {selected.size > 0 && (
             <button
