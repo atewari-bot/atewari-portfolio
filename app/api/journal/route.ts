@@ -7,8 +7,8 @@ import { sessionOptions, SessionData } from '@/lib/session'
 import { logger } from '@/lib/logger'
 import { NextRequest, NextResponse } from 'next/server'
 
-// GitHub commits are synced to DB at most once every 12 hours (or on demand via /api/journal/sync).
-const SYNC_INTERVAL_MS = 12 * 60 * 60 * 1000
+// GitHub commits are synced to DB at most once per day (or on demand via /api/journal/sync).
+const SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000
 
 // ─── GET /api/journal ─────────────────────────────────────────────────────────
 // Query params:
