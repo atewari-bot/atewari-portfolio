@@ -163,6 +163,157 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
   )
 }
 
+// ─── Mindspace entry row (expandable) ────────────────────────────────────────
+
+function MindspaceEntryRow({ entry, visitorId, onReact }: EntryRowProps) {
+  const [expanded, setExpanded] = useState(false)
+  const color = CATEGORY_COLOR[entry.category] ?? '#8b949e'
+  const { day, date, tz } = entryDate(entry.timestamp)
+  const tags = entry.tags ?? []
+
+  return (
+    <div style={{
+      borderBottom: '1px solid #21262d',
+      transition: 'background 0.15s',
+      background: expanded ? '#0d1117' : 'transparent',
+    }}>
+      {/* ── Header row (always visible) ── */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr auto auto',
+          alignItems: 'center',
+          gap: 12,
+          padding: '8px 14px',
+          cursor: 'pointer',
+          userSelect: 'none',
+        }}
+        onClick={() => setExpanded(v => !v)}
+        onMouseEnter={e => { if (!expanded) (e.currentTarget.style.background = '#161b22') }}
+        onMouseLeave={e => { if (!expanded) (e.currentTarget.style.background = 'transparent') }}
+      >
+        {/* Left: chevron + badge + title */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+          <span style={{
+            fontSize: 9, color: '#8b949e', flexShrink: 0,
+            transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
+            transition: 'transform 0.15s', display: 'inline-block',
+          }}>▶</span>
+
+          <span style={{
+            fontSize: 10, fontWeight: 700, color, background: `${color}18`,
+            border: `1px solid ${color}30`, borderRadius: 99, padding: '1px 7px',
+            flexShrink: 0, letterSpacing: '0.03em',
+          }}>
+            {entry.category}
+          </span>
+
+          <span style={{
+            fontSize: 12, color: '#e6edf3',
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+          }} title={entry.title}>
+            {entry.title}
+          </span>
+        </div>
+
+        {/* Date column */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
+          <span style={{ fontSize: 10, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
+          <span style={{ fontSize: 10, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
+        </div>
+
+        {/* Right: time + reactions — stop propagation so clicks don't toggle expand */}
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}
+          onClick={e => e.stopPropagation()}
+        >
+          <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
+
+          <button
+            onClick={() => visitorId && onReact(entry.id, 'like')}
+            title={visitorId ? 'Like' : 'Sign in to react'}
+            style={{
+              background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
+              display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+              borderRadius: 4, color: entry.userReaction === 'like' ? '#22c55e' : '#8b949e',
+              fontSize: 11, transition: 'color 0.15s',
+            }}
+            onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#22c55e' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'like' ? '#22c55e' : '#8b949e' }}
+          >
+            <span style={{ fontSize: 12 }}>👍</span>
+            {entry.likes > 0 && <span>{entry.likes}</span>}
+          </button>
+
+          <button
+            onClick={() => visitorId && onReact(entry.id, 'dislike')}
+            title={visitorId ? 'Dislike' : 'Sign in to react'}
+            style={{
+              background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
+              display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+              borderRadius: 4, color: entry.userReaction === 'dislike' ? '#f87171' : '#8b949e',
+              fontSize: 11, transition: 'color 0.15s',
+            }}
+            onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#f87171' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'dislike' ? '#f87171' : '#8b949e' }}
+          >
+            <span style={{ fontSize: 12 }}>👎</span>
+            {entry.dislikes > 0 && <span>{entry.dislikes}</span>}
+          </button>
+        </div>
+      </div>
+
+      {/* ── Expanded body ── */}
+      {expanded && (
+        <div style={{
+          borderTop: '1px solid #21262d',
+          padding: '14px 20px 16px',
+          display: 'flex', flexDirection: 'column', gap: 10,
+        }}>
+          {/* Full title */}
+          <p style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#e6edf3', lineHeight: 1.4 }}>
+            {entry.title}
+          </p>
+
+          {/* Body */}
+          {entry.body ? (
+            <p style={{
+              margin: 0, fontSize: 13, color: '#c9d1d9',
+              lineHeight: 1.75, whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+            }}>
+              {entry.body}
+            </p>
+          ) : (
+            <p style={{ margin: 0, fontSize: 12, color: '#484f58', fontStyle: 'italic' }}>No body text.</p>
+          )}
+
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+              {tags.map(t => (
+                <span key={t} style={{
+                  fontSize: 10, color: '#8b949e', background: '#161b22',
+                  border: '1px solid #30363d', borderRadius: 99, padding: '2px 8px',
+                }}>
+                  #{t}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Full timestamp */}
+          <p style={{ margin: 0, fontSize: 11, color: '#484f58' }}>
+            {new Date(entry.timestamp).toLocaleString('en-US', {
+              weekday: 'long', month: 'long', day: 'numeric',
+              year: 'numeric', hour: '2-digit', minute: '2-digit',
+            })}{' '}· {tz}
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 interface PageData {
@@ -359,14 +510,23 @@ export default function JournalSection() {
             }
           </div>
         ) : (
-          data.entries.map(entry => (
-            <EntryRow
-              key={entry.id}
-              entry={entry}
-              visitorId={visitorIdRef.current}
-              onReact={handleReact}
-            />
-          ))
+          data.entries.map(entry =>
+            tab === 'mindspace' ? (
+              <MindspaceEntryRow
+                key={entry.id}
+                entry={entry}
+                visitorId={visitorIdRef.current}
+                onReact={handleReact}
+              />
+            ) : (
+              <EntryRow
+                key={entry.id}
+                entry={entry}
+                visitorId={visitorIdRef.current}
+                onReact={handleReact}
+              />
+            )
+          )
         )}
       </div>
 

@@ -15,20 +15,22 @@ const SYNC_INTERVAL_MS = 12 * 60 * 60 * 1000
 //   page       — 1-based page number (default 1)
 //   pageSize   — rows per page, 10–50 (default 10)
 //   visitorId  — used to attach the caller's reaction state
-//   source     — "manual" to show only admin-written entries (Mindspace tab)
+//   source     — "manual" for Mindspace tab; defaults to "github_push" (Feed tab)
+//                Pass "all" only for admin contexts that need every entry.
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
   const page         = Math.max(1, parseInt(searchParams.get('page')     ?? '1',  10))
   const pageSize     = Math.min(50, Math.max(10, parseInt(searchParams.get('pageSize') ?? '10', 10)))
   const visitorId    = parseInt(searchParams.get('visitorId') ?? '0', 10) || undefined
-  const sourceFilter = searchParams.get('source') ?? undefined
+  // Feed tab shows GitHub commits only. Mindspace tab passes source=manual explicitly.
+  const sourceFilter = searchParams.get('source') ?? 'github_push'
 
   await initJournalDb()
 
   // Auto-sync GitHub entries in the background when the cache is stale.
   // Fire-and-forget: the response is served from DB immediately.
-  if (sourceFilter !== 'manual') {
+  if (sourceFilter === 'github_push') {
     const lastSync = await getLastGithubSync()
     if (!lastSync || Date.now() - lastSync.getTime() > SYNC_INTERVAL_MS) {
       logger.info('journal', 'GitHub data stale — triggering background sync')

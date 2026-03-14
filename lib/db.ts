@@ -297,6 +297,20 @@ export async function getAllJournalEntries(source?: string): Promise<JournalEntr
   return result.rows as unknown as JournalEntryRow[]
 }
 
+/** Updates title, body, category and tags of a manual journal entry. */
+export async function updateJournalEntry(id: number, data: {
+  title:     string
+  body?:     string
+  category:  string
+  tags?:     string
+}): Promise<void> {
+  await getDb().execute({
+    sql: `UPDATE journal_entries SET title = ?, body = ?, category = ?, tags = ?
+          WHERE id = ? AND source = 'manual'`,
+    args: [data.title, data.body ?? null, data.category, data.tags ?? null, id],
+  })
+}
+
 /** Deletes a manual journal entry. Refuses to delete GitHub-sourced entries. */
 export async function deleteJournalEntry(id: number): Promise<void> {
   await getDb().execute({
