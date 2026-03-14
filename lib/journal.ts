@@ -6,6 +6,8 @@
  */
 
 import { logger } from './logger'
+import { upsertGithubCommits, setLastGithubSync, initJournalDb } from './db'
+import { invalidateJournalCache } from './edgeConfig'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -136,4 +138,39 @@ export async function fetchGitHubJournal(): Promise<JournalEntry[]> {
 
   logger.info('github', 'GitHub journal fetch complete', { total: result.length })
   return result
+}
+
+// ─── DB sync ──────────────────────────────────────────────────────────────────
+
+/**
+ * Fetches the latest GitHub commits and persists any new ones into journal_entries.
+ * Existing commits (matched by SHA) are skipped via INSERT OR IGNORE.
+ * Updates the github_sync timestamp on every successful run.
+ */
+export async function syncGithubToDb(): Promise<{ fetched: number; inserted: number }> {
+  logger.info('github', 'Starting DB sync')
+  await initJournalDb()
+
+  const entries = await fetchGitHubJournal()
+  if (!entries.length) {
+    await setLastGithubSync()
+    logger.warn('github', 'No entries fetched — sync timestamp updated but nothing inserted')
+    return { fetched: 0, inserted: 0 }
+  }
+
+  const inserted = await upsertGithubCommits(
+    entries.map(e => ({
+      external_id: e.id,
+      title:       e.title,
+      repo:        e.repo     ?? '',
+      repo_url:    e.repoUrl  ?? '',
+      url:         e.url      ?? '',
+      timestamp:   e.timestamp,
+    }))
+  )
+
+  await setLastGithubSync()
+  void invalidateJournalCache()
+  logger.info('github', 'DB sync complete', { fetched: entries.length, inserted })
+  return { fetched: entries.length, inserted }
 }

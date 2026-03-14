@@ -1,32 +1,14 @@
-import { fetchGitHubJournal, type JournalEntry } from '@/lib/journal'
-import { getAllJournalEntries, createJournalEntry, initJournalDb, getBulkReactionCounts } from '@/lib/db'
+import { type JournalEntry, type JournalSource, type JournalCategory, syncGithubToDb } from '@/lib/journal'
+import { getAllJournalEntries, createJournalEntry, initJournalDb, getBulkReactionCounts, getLastGithubSync, type JournalEntryRow } from '@/lib/db'
+import { getJournalCache, setJournalCache, invalidateJournalCache } from '@/lib/edgeConfig'
 import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
 import { sessionOptions, SessionData } from '@/lib/session'
 import { logger } from '@/lib/logger'
 import { NextRequest, NextResponse } from 'next/server'
 
-// ─── GitHub cache (5 min TTL) ─────────────────────────────────────────────────
-// In-process cache avoids hammering the GitHub API on every page load.
-// Resets on server restart or manual POST (new manual entry).
-
-let ghCache: { entries: JournalEntry[]; expiresAt: number } | null = null
-
-async function getCachedGitHubEntries(): Promise<JournalEntry[]> {
-  if (ghCache && Date.now() < ghCache.expiresAt) {
-    logger.debug('journal', 'GitHub cache hit', { count: ghCache.entries.length })
-    return ghCache.entries
-  }
-  try {
-    const entries = await fetchGitHubJournal()
-    ghCache = { entries, expiresAt: Date.now() + 5 * 60 * 1000 }
-    logger.info('journal', 'GitHub cache refreshed', { count: entries.length })
-    return entries
-  } catch (err) {
-    logger.error('journal', 'GitHub fetch failed — serving stale cache', err)
-    return ghCache?.entries ?? []
-  }
-}
+// GitHub commits are synced to DB at most once every 12 hours (or on demand via /api/journal/sync).
+const SYNC_INTERVAL_MS = 12 * 60 * 60 * 1000
 
 // ─── GET /api/journal ─────────────────────────────────────────────────────────
 // Query params:
@@ -44,29 +26,43 @@ export async function GET(request: NextRequest) {
 
   await initJournalDb()
 
-  // Skip GitHub entries when caller requests manual-only (Mindspace tab)
-  const [ghEntries, dbRows] = await Promise.all([
-    sourceFilter === 'manual' ? Promise.resolve([]) : getCachedGitHubEntries(),
-    getAllJournalEntries(),
-  ])
+  // Auto-sync GitHub entries in the background when the cache is stale.
+  // Fire-and-forget: the response is served from DB immediately.
+  if (sourceFilter !== 'manual') {
+    const lastSync = await getLastGithubSync()
+    if (!lastSync || Date.now() - lastSync.getTime() > SYNC_INTERVAL_MS) {
+      logger.info('journal', 'GitHub data stale — triggering background sync')
+      void syncGithubToDb().catch(err => logger.error('journal', 'Auto-sync failed', err))
+    }
+  }
 
-  const manualEntries: JournalEntry[] = dbRows.map(row => ({
-    id:        `manual-${row.id}`,
-    source:    'manual'                          as const,
-    category:  row.category                      as JournalEntry['category'],
+  // Serve rows from Redis if available; fall through to DB on miss.
+  let dbRows: JournalEntryRow[] | null = await getJournalCache(sourceFilter)
+  if (!dbRows) {
+    dbRows = await getAllJournalEntries(sourceFilter)
+    void setJournalCache(dbRows, sourceFilter)
+  }
+
+  // Map DB rows to the shared JournalEntry shape.
+  // GitHub entries use their SHA as the reaction key (external_id); manual entries use "manual-{id}".
+  const entries: JournalEntry[] = dbRows.map(row => ({
+    id:        row.source === 'manual' ? `manual-${row.id}` : (row.external_id ?? `gh-${row.id}`),
+    source:    row.source    as JournalSource,
+    category:  row.category  as JournalCategory,
     title:     row.title,
-    body:      row.body                          ?? undefined,
+    body:      row.body      ?? undefined,
+    repo:      row.repo      ?? undefined,
+    repoUrl:   row.repo_url  ?? undefined,
+    url:       row.url       ?? undefined,
     timestamp: row.created_at,
     tags:      row.tags ? row.tags.split(',').map(t => t.trim()).filter(Boolean) : undefined,
     likes:     0,
     dislikes:  0,
   }))
 
-  const all = [...ghEntries, ...manualEntries]
-    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-
-  const total       = all.length
-  const pageEntries = all.slice((page - 1) * pageSize, page * pageSize)
+  const sorted      = entries.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+  const total       = sorted.length
+  const pageEntries = sorted.slice((page - 1) * pageSize, page * pageSize)
 
   // Bulk-fetch reaction counts for just the entries on this page
   const reactions = await getBulkReactionCounts(pageEntries.map(e => e.id), visitorId)
@@ -77,8 +73,7 @@ export async function GET(request: NextRequest) {
 }
 
 // ─── POST /api/journal ────────────────────────────────────────────────────────
-// Admin-only. Creates a manual journal entry and busts the GitHub cache so the
-// new entry appears immediately on the next feed fetch.
+// Admin-only. Creates a manual journal entry.
 
 export async function POST(request: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions)
@@ -98,7 +93,7 @@ export async function POST(request: NextRequest) {
       tags:     tags?.trim()  || undefined,
     })
 
-    ghCache = null // Bust cache so new entry appears in the feed immediately
+    void invalidateJournalCache()
     logger.info('journal', 'Manual entry created', { id, title: title.trim(), category })
     return NextResponse.json({ success: true, id })
   } catch (err) {

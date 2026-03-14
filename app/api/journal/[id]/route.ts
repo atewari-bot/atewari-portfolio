@@ -2,6 +2,7 @@ import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
 import { sessionOptions, SessionData } from '@/lib/session'
 import { deleteJournalEntry } from '@/lib/db'
+import { invalidateJournalCache } from '@/lib/edgeConfig'
 import { logger } from '@/lib/logger'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -22,6 +23,7 @@ export async function DELETE(
 
   try {
     await deleteJournalEntry(id)
+    void invalidateJournalCache()
     logger.info('journal', 'Entry deleted', { id })
     return NextResponse.json({ success: true })
   } catch (err) {

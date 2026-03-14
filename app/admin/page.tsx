@@ -9,6 +9,7 @@ import VisitorTable from './VisitorTable'
 import WriteJournalForm from './WriteJournalForm'
 import QuestionsAdmin from './QuestionsAdmin'
 import TokenAlerts from './TokenAlerts'
+import GithubSyncCard from './GithubSyncCard'
 
 export const dynamic = 'force-dynamic'
 
@@ -55,9 +56,12 @@ export default async function AdminPage() {
         ))}
       </div>
 
-      {/* Journal + Questions row */}
+      {/* GitHub sync + Journal + Questions row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <WriteJournalForm />
+        <div className="flex flex-col gap-6">
+          <GithubSyncCard />
+          <WriteJournalForm />
+        </div>
         <QuestionsAdmin initialQuestions={questions as unknown as Parameters<typeof QuestionsAdmin>[0]['initialQuestions']} />
       </div>
 

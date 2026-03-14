@@ -191,14 +191,38 @@ export async function initJournalDb() {
   const db = getDb()
   await db.execute(`
     CREATE TABLE IF NOT EXISTS journal_entries (
-      id         INTEGER PRIMARY KEY AUTOINCREMENT,
-      title      TEXT    NOT NULL,
-      body       TEXT,
-      category   TEXT    NOT NULL DEFAULT 'note',
-      tags       TEXT,
-      created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      source      TEXT    NOT NULL DEFAULT 'manual',
+      external_id TEXT,
+      title       TEXT    NOT NULL,
+      body        TEXT,
+      category    TEXT    NOT NULL DEFAULT 'note',
+      tags        TEXT,
+      repo        TEXT,
+      repo_url    TEXT,
+      url         TEXT,
+      created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
     )
   `)
+
+  // Migrate columns added after initial release
+  const journalMigrations = [
+    `ALTER TABLE journal_entries ADD COLUMN source      TEXT NOT NULL DEFAULT 'manual'`,
+    `ALTER TABLE journal_entries ADD COLUMN external_id TEXT`,
+    `ALTER TABLE journal_entries ADD COLUMN repo        TEXT`,
+    `ALTER TABLE journal_entries ADD COLUMN repo_url    TEXT`,
+    `ALTER TABLE journal_entries ADD COLUMN url         TEXT`,
+  ]
+  for (const sql of journalMigrations) {
+    try { await db.execute(sql) } catch { /* column already exists */ }
+  }
+
+  // Unique index prevents duplicate GitHub SHAs from being inserted
+  await db.execute(`
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_journal_external_id
+    ON journal_entries(external_id) WHERE external_id IS NOT NULL
+  `)
+
   await db.execute(`
     CREATE TABLE IF NOT EXISTS journal_reactions (
       id         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -220,15 +244,28 @@ export async function initJournalDb() {
       answer       TEXT
     )
   `)
+
+  // Single-row table tracking the last time GitHub commits were synced to DB
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS github_sync (
+      id        INTEGER PRIMARY KEY DEFAULT 1,
+      synced_at TEXT    NOT NULL
+    )
+  `)
 }
 
 export interface JournalEntryRow {
-  id: number
-  title: string
-  body: string | null
-  category: string
-  tags: string | null
-  created_at: string
+  id:          number
+  source:      string       // 'manual' | 'github_push'
+  external_id: string | null
+  title:       string
+  body:        string | null
+  category:    string
+  tags:        string | null
+  repo:        string | null
+  repo_url:    string | null
+  url:         string | null
+  created_at:  string
 }
 
 export async function createJournalEntry(data: {
@@ -239,22 +276,82 @@ export async function createJournalEntry(data: {
 }): Promise<number> {
   await initJournalDb()
   const result = await getDb().execute({
-    sql: `INSERT INTO journal_entries (title, body, category, tags) VALUES (?, ?, ?, ?)`,
+    sql: `INSERT INTO journal_entries (source, title, body, category, tags) VALUES ('manual', ?, ?, ?, ?)`,
     args: [data.title, data.body ?? null, data.category, data.tags ?? null],
   })
   return Number(result.lastInsertRowid)
 }
 
-export async function getAllJournalEntries(): Promise<JournalEntryRow[]> {
+/** Returns all journal entries, optionally filtered by source ('manual' | 'github_push'). */
+export async function getAllJournalEntries(source?: string): Promise<JournalEntryRow[]> {
   await initJournalDb()
-  const result = await getDb().execute(
-    `SELECT * FROM journal_entries ORDER BY created_at DESC`
-  )
+  const db = getDb()
+  if (source) {
+    const result = await db.execute({
+      sql: `SELECT * FROM journal_entries WHERE source = ? ORDER BY created_at DESC`,
+      args: [source],
+    })
+    return result.rows as unknown as JournalEntryRow[]
+  }
+  const result = await db.execute(`SELECT * FROM journal_entries ORDER BY created_at DESC`)
   return result.rows as unknown as JournalEntryRow[]
 }
 
+/** Deletes a manual journal entry. Refuses to delete GitHub-sourced entries. */
 export async function deleteJournalEntry(id: number): Promise<void> {
-  await getDb().execute({ sql: `DELETE FROM journal_entries WHERE id = ?`, args: [id] })
+  await getDb().execute({
+    sql: `DELETE FROM journal_entries WHERE id = ? AND source = 'manual'`,
+    args: [id],
+  })
+}
+
+// ─── GitHub sync ──────────────────────────────────────────────────────────────
+
+/** Returns the timestamp of the last successful GitHub → DB sync, or null if never synced. */
+export async function getLastGithubSync(): Promise<Date | null> {
+  await initJournalDb()
+  const result = await getDb().execute(`SELECT synced_at FROM github_sync WHERE id = 1`)
+  if (!result.rows.length) return null
+  return new Date(result.rows[0].synced_at as string)
+}
+
+/** Records the current UTC time as the latest GitHub sync timestamp. */
+export async function setLastGithubSync(): Promise<void> {
+  await initJournalDb()
+  await getDb().execute(`
+    INSERT INTO github_sync (id, synced_at) VALUES (1, datetime('now'))
+    ON CONFLICT(id) DO UPDATE SET synced_at = datetime('now')
+  `)
+}
+
+/**
+ * Inserts GitHub commits into the journal_entries table.
+ * Existing rows (matched by external_id / SHA) are silently skipped.
+ * Returns the number of newly inserted rows.
+ */
+export async function upsertGithubCommits(entries: Array<{
+  external_id: string
+  title:       string
+  repo:        string
+  repo_url:    string
+  url:         string
+  timestamp:   string
+}>): Promise<number> {
+  await initJournalDb()
+  const db = getDb()
+  let inserted = 0
+  for (const e of entries) {
+    const result = await db.execute({
+      sql: `
+        INSERT OR IGNORE INTO journal_entries
+          (source, external_id, title, category, repo, repo_url, url, created_at)
+        VALUES ('github_push', ?, ?, 'coding', ?, ?, ?, ?)
+      `,
+      args: [e.external_id, e.title, e.repo, e.repo_url, e.url, e.timestamp],
+    })
+    inserted += Number(result.rowsAffected)
+  }
+  return inserted
 }
 
 // ─── Reactions ────────────────────────────────────────────────────────────────

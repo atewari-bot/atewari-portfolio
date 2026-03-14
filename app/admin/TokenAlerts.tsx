@@ -21,7 +21,7 @@ export default async function TokenAlerts() {
       {/* Header row */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <span style={{ fontSize: 12, fontWeight: 600, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-          Token Health
+          System Health
         </span>
         {issues.length === 0 ? (
           <span style={{ fontSize: 11, background: 'rgba(63,185,80,0.1)', border: '1px solid rgba(63,185,80,0.2)', color: '#3fb950', borderRadius: 99, padding: '1px 8px' }}>
