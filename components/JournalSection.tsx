@@ -45,7 +45,7 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
   const { day, date, tz } = entryDate(entry.timestamp)
 
   return (
-    <div style={{
+    <div className="j-entry-row" style={{
       display: 'grid',
       gridTemplateColumns: '1fr auto auto',
       alignItems: 'center',
@@ -115,15 +115,15 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
         ))}
       </div>
 
-      {/* Date column */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
-        <span style={{ fontSize: 10, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
-        <span style={{ fontSize: 10, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
+      {/* Date column — hidden on mobile via CSS */}
+      <div className="j-date-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
+        <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
+        <span style={{ fontSize: 11, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
       </div>
 
       {/* Right: relative time + reactions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-        <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+        <span className="j-rel-time" style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
 
         {/* Like */}
         <button
@@ -131,14 +131,14 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
           title={visitorId ? 'Like' : 'Sign in to react'}
           style={{
             background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
-            display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+            display: 'flex', alignItems: 'center', gap: 3, padding: '4px 6px',
             borderRadius: 4, color: entry.userReaction === 'like' ? '#22c55e' : '#8b949e',
-            fontSize: 11, transition: 'color 0.15s',
+            fontSize: 12, transition: 'color 0.15s', minHeight: 32,
           }}
           onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#22c55e' }}
           onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'like' ? '#22c55e' : '#8b949e' }}
         >
-          <span style={{ fontSize: 12 }}>👍</span>
+          <span style={{ fontSize: 13 }}>👍</span>
           {entry.likes > 0 && <span>{entry.likes}</span>}
         </button>
 
@@ -148,14 +148,14 @@ function EntryRow({ entry, visitorId, onReact }: EntryRowProps) {
           title={visitorId ? 'Dislike' : 'Sign in to react'}
           style={{
             background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
-            display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+            display: 'flex', alignItems: 'center', gap: 3, padding: '4px 6px',
             borderRadius: 4, color: entry.userReaction === 'dislike' ? '#f87171' : '#8b949e',
-            fontSize: 11, transition: 'color 0.15s',
+            fontSize: 12, transition: 'color 0.15s', minHeight: 32,
           }}
           onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#f87171' }}
           onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'dislike' ? '#f87171' : '#8b949e' }}
         >
-          <span style={{ fontSize: 12 }}>👎</span>
+          <span style={{ fontSize: 13 }}>👎</span>
           {entry.dislikes > 0 && <span>{entry.dislikes}</span>}
         </button>
       </div>
@@ -179,6 +179,7 @@ function MindspaceEntryRow({ entry, visitorId, onReact }: EntryRowProps) {
     }}>
       {/* ── Header row (always visible) ── */}
       <div
+        className="j-entry-row"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr auto auto',
@@ -216,32 +217,32 @@ function MindspaceEntryRow({ entry, visitorId, onReact }: EntryRowProps) {
           </span>
         </div>
 
-        {/* Date column */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
-          <span style={{ fontSize: 10, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
-          <span style={{ fontSize: 10, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
+        {/* Date column — hidden on mobile via CSS */}
+        <div className="j-date-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, paddingRight: 12 }}>
+          <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{day} · {date}</span>
+          <span style={{ fontSize: 11, color: '#6e7681', whiteSpace: 'nowrap' }}>{tz}</span>
         </div>
 
         {/* Right: time + reactions — stop propagation so clicks don't toggle expand */}
         <div
-          style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}
           onClick={e => e.stopPropagation()}
         >
-          <span style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
+          <span className="j-rel-time" style={{ fontSize: 11, color: '#8b949e', whiteSpace: 'nowrap' }}>{relativeTime(entry.timestamp)}</span>
 
           <button
             onClick={() => visitorId && onReact(entry.id, 'like')}
             title={visitorId ? 'Like' : 'Sign in to react'}
             style={{
               background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
-              display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+              display: 'flex', alignItems: 'center', gap: 3, padding: '4px 6px',
               borderRadius: 4, color: entry.userReaction === 'like' ? '#22c55e' : '#8b949e',
-              fontSize: 11, transition: 'color 0.15s',
+              fontSize: 12, transition: 'color 0.15s', minHeight: 32,
             }}
             onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#22c55e' }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'like' ? '#22c55e' : '#8b949e' }}
           >
-            <span style={{ fontSize: 12 }}>👍</span>
+            <span style={{ fontSize: 13 }}>👍</span>
             {entry.likes > 0 && <span>{entry.likes}</span>}
           </button>
 
@@ -250,14 +251,14 @@ function MindspaceEntryRow({ entry, visitorId, onReact }: EntryRowProps) {
             title={visitorId ? 'Dislike' : 'Sign in to react'}
             style={{
               background: 'none', border: 'none', cursor: visitorId ? 'pointer' : 'default',
-              display: 'flex', alignItems: 'center', gap: 3, padding: '2px 4px',
+              display: 'flex', alignItems: 'center', gap: 3, padding: '4px 6px',
               borderRadius: 4, color: entry.userReaction === 'dislike' ? '#f87171' : '#8b949e',
-              fontSize: 11, transition: 'color 0.15s',
+              fontSize: 12, transition: 'color 0.15s', minHeight: 32,
             }}
             onMouseEnter={e => { if (visitorId) (e.currentTarget as HTMLButtonElement).style.color = '#f87171' }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = entry.userReaction === 'dislike' ? '#f87171' : '#8b949e' }}
           >
-            <span style={{ fontSize: 12 }}>👎</span>
+            <span style={{ fontSize: 13 }}>👎</span>
             {entry.dislikes > 0 && <span>{entry.dislikes}</span>}
           </button>
         </div>
@@ -413,11 +414,11 @@ export default function JournalSection() {
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
 
   return (
-    <section id="journal" className="max-w-[1100px] mx-auto px-8 py-12">
+    <section id="journal" className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
 
       {/* Header */}
-      <div className="flex items-center gap-4 mb-5">
-        <h2 className="text-2xl font-bold">Journal</h2>
+      <div className="flex items-center flex-wrap gap-2 sm:gap-4 mb-5">
+        <h2 className="text-xl sm:text-2xl font-bold">Journal</h2>
 
         {/* Tab switcher */}
         <div style={{ display: 'flex', gap: 2, background: '#161b22', border: '1px solid #30363d', borderRadius: 8, padding: 3 }}>
@@ -444,7 +445,7 @@ export default function JournalSection() {
 
         {/* Sources (feed only) */}
         {tab === 'feed' && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div className="j-sources" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ fontSize: 10, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Sources:</span>
             <span style={{
               fontSize: 10, fontWeight: 700, color: '#4d8fd4',
@@ -567,7 +568,15 @@ export default function JournalSection() {
         </div>
       )}
 
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 640px) {
+          .j-entry-row { grid-template-columns: 1fr auto !important; }
+          .j-date-col  { display: none !important; }
+          .j-sources   { display: none !important; }
+          .j-rel-time  { display: none !important; }
+        }
+      `}</style>
     </section>
   )
 }

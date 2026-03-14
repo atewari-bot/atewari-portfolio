@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-border px-8 py-8 text-center text-sm text-muted flex flex-col items-center gap-3">
-      <div className="flex gap-6">
+    <footer className="border-t border-border px-4 sm:px-8 py-6 sm:py-8 text-center text-sm text-muted flex flex-col items-center gap-3">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
         <a
           href="https://github.com/atewari-bot"
           target="_blank"

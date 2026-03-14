@@ -8,8 +8,8 @@ export default function Hero() {
 
   return (
     <>
-      <div className="max-w-[800px] mx-auto px-8 pt-20 pb-16">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-8 mb-8">
+      <div className="max-w-[800px] mx-auto px-4 sm:px-8 pt-12 sm:pt-20 pb-10 sm:pb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 mb-6 sm:mb-8">
           <div className="relative w-28 h-28 shrink-0">
             <Image
               src="/resources/profile.jpg"
@@ -26,7 +26,7 @@ export default function Hero() {
             </h1>
           </div>
         </div>
-        <p className="text-[1.1rem] text-muted max-w-[580px] mb-8">
+        <p className="text-base sm:text-[1.1rem] text-muted max-w-[580px] mb-6 sm:mb-8">
           Technical lead with 17 years of experience designing and delivering cloud-native microservices, large-scale distributed systems, and AI pipelines on AWS and GCP. Expertise in agentic AI, semantic search, and conversational AI systems using Python, Go, and Java. Proven track record driving cross-functional initiatives and optimizing systems for performance, scalability, and cost efficiency.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -54,11 +54,11 @@ export default function Hero() {
 
       {isResumeOpen && (
         <div
-          className="fixed inset-0 bg-green-950/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-green-950/80 z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={() => setIsResumeOpen(false)}
         >
           <div
-            className="relative w-full max-w-5xl h-[90vh] bg-green-600 rounded-lg overflow-hidden"
+            className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-green-600 rounded-lg overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button

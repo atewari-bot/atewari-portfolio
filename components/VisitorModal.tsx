@@ -96,6 +96,7 @@ interface RemoteCursor {
 export default function VisitorModal() {
   const [visible, setVisible] = useState(false)
   const [pos, setPos] = useState({ x: 100, y: 100 })
+  const [isMobile, setIsMobile] = useState(false)
   const [generatedName, setGeneratedName] = useState('')
   const [name, setName] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -285,6 +286,14 @@ export default function VisitorModal() {
 
     setVisible(true)
   }, [connectToPusher])
+
+  // Detect mobile/touch so we can center the modal instead of cursor-following
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768 || navigator.maxTouchPoints > 0)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   useEffect(() => {
     const existing = readSession()
@@ -489,12 +498,33 @@ export default function VisitorModal() {
       {/* ── Modal ── */}
       {visible && (
         <div
-          style={{ position: 'fixed', inset: 0, zIndex: 9999, cursor: 'none' }}
-          onMouseDown={e => { e.preventDefault(); inputRef.current?.focus() }}
-          onClick={e => { e.preventDefault(); inputRef.current?.focus() }}
+          style={isMobile ? {
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)',
+          } : {
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            cursor: 'none',
+          }}
+          onMouseDown={e => { if (!isMobile) { e.preventDefault(); inputRef.current?.focus() } }}
+          onClick={e => { if (!isMobile) { e.preventDefault(); inputRef.current?.focus() } }}
         >
           <div
-            style={{
+            style={isMobile ? {
+              width: '100%',
+              maxWidth: MODAL_W,
+              pointerEvents: 'auto',
+              transition: 'opacity 0.4s ease',
+              opacity: done ? 0 : 1,
+            } : {
               position: 'absolute',
               left: pos.x,
               top: pos.y,
@@ -506,8 +536,8 @@ export default function VisitorModal() {
             onMouseDown={e => e.stopPropagation()}
             onClick={e => e.stopPropagation()}
           >
-            {/* Arrow */}
-            <div style={{
+            {/* Arrow — desktop only (cursor-follow indicator) */}
+            {!isMobile && <div style={{
               position: 'absolute',
               top: -7,
               left: 22,
@@ -519,7 +549,7 @@ export default function VisitorModal() {
               borderBottom: 'none',
               transform: 'rotate(45deg)',
               zIndex: 1,
-            }} />
+            }} />}
 
             {/* Card */}
             <div style={{

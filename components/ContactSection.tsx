@@ -21,12 +21,12 @@ const contacts = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="max-w-[1100px] mx-auto px-8 py-12">
-      <div className="flex items-baseline gap-4 mb-8">
-        <h2 className="text-2xl font-bold">Contact</h2>
+    <section id="contact" className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
+      <div className="flex items-baseline gap-4 mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold">Contact</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {contacts.map((c) => (
           <a
             key={c.label}

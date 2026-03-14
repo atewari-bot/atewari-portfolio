@@ -11,7 +11,7 @@ const publications = [
 
 export default function PublicationsSection() {
   return (
-    <section id="publications" className="max-w-[1100px] mx-auto px-8 py-12">
+    <section id="publications" className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
       <div className="flex items-baseline gap-4 mb-8">
         <h2 className="text-2xl font-bold">Publications</h2>
         <div className="flex-1 h-px bg-border" />

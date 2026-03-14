@@ -37,7 +37,7 @@ function AnswerOverlay({ question, onClose }: { question: Question; onClose: () 
         style={{
           background: 'linear-gradient(145deg, #1a1f2e, #0d1117)',
           border: '1px solid rgba(77,143,212,0.2)',
-          borderRadius: 16, padding: '28px 28px 24px',
+          borderRadius: 16, padding: 'clamp(16px, 5vw, 28px)',
           maxWidth: 560, width: '100%',
           boxShadow: '0 32px 80px rgba(0,0,0,0.7)',
           position: 'relative',
@@ -126,13 +126,13 @@ function QuestionRow({ q, onExpand }: { q: Question; onExpand: () => void }) {
           <p style={{
             margin: '3px 0 0 0', fontSize: 11, color: '#22c55e',
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            paddingLeft: 68, // align under question text
+            paddingLeft: 0,
           }} title={q.answer}>
             A: {q.answer}
           </p>
         )}
         {!q.answered && (
-          <p style={{ margin: '3px 0 0', fontSize: 11, color: '#30363d', fontStyle: 'italic', paddingLeft: 68 }}>
+          <p style={{ margin: '3px 0 0', fontSize: 11, color: '#30363d', fontStyle: 'italic', paddingLeft: 0 }}>
             Awaiting answer…
           </p>
         )}
@@ -253,9 +253,9 @@ export default function QuestionsSection() {
   const visible    = sorted.slice((page - 1) * pageSize, page * pageSize)
 
   return (
-    <section id="questions" className="max-w-[1100px] mx-auto px-8 py-12">
+    <section id="questions" className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
       <div className="flex items-baseline gap-4 mb-6">
-        <h2 className="text-2xl font-bold">Ask a Question</h2>
+        <h2 className="text-xl sm:text-2xl font-bold">Ask a Question</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
 

@@ -39,12 +39,12 @@ const skillCategories = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="max-w-[1100px] mx-auto px-8 py-12">
-      <div className="flex items-baseline gap-4 mb-8">
-        <h2 className="text-2xl font-bold">About</h2>
+    <section id="about" className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
+      <div className="flex items-baseline gap-4 mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold">About</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         <div className="bg-surface border border-border rounded-card p-6">
           <h3 className="text-xs uppercase tracking-widest text-accent mb-3">Background</h3>
           <p className="text-sm text-muted mb-3">
