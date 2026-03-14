@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LeftNav, { type PortfolioView } from './LeftNav'
 import Hero from './Hero'
 import ProjectsSection from './ProjectsSection'
@@ -12,14 +12,20 @@ import PublicationsSection from './PublicationsSection'
 import ContactSection from './ContactSection'
 
 export default function PortfolioLayout() {
+  // Read ?tab from URL so admin can deep-link back to Journal tab
   const [view, setView] = useState<PortfolioView>('home')
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('tab') === 'journal') setView('journal')
+  }, [])
 
   return (
     <>
       <LeftNav view={view} onViewChange={setView} />
 
-      {/* Content — offset for desktop sidebar, bottom padding for mobile tab bar */}
-      <main className="lg:pl-[220px] pb-16 lg:pb-0 min-h-screen">
+      {/* div (not main) — root layout already wraps everything in <main> */}
+      <div className="lg:pl-[220px] pb-16 lg:pb-0 min-h-screen">
         {view === 'home' ? (
           <>
             <Hero />
@@ -36,7 +42,7 @@ export default function PortfolioLayout() {
             <QuestionsSection />
           </>
         )}
-      </main>
+      </div>
     </>
   )
 }

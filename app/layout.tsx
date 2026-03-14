@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className="bg-bg text-text leading-relaxed font-[family-name:var(--font-nunito)]">
         <VisitorModal />
         <Nav />
-        <main>{children}</main>
+        {children}
         <Footer />
         <Analytics />
       </body>

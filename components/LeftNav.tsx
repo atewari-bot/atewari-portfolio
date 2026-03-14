@@ -1,10 +1,12 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+
 export type PortfolioView = 'home' | 'journal'
 
 interface Props {
-  view: PortfolioView
-  onViewChange: (v: PortfolioView) => void
+  view?: PortfolioView
+  onViewChange?: (v: PortfolioView) => void
 }
 
 function HomeIcon({ size = 18 }: { size?: number }) {
@@ -36,69 +38,88 @@ function AdminIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-const NAV_ITEMS: { id: PortfolioView; label: string; Icon: React.FC<{ size?: number }> }[] = [
-  { id: 'home',    label: 'Home',    Icon: HomeIcon    },
-  { id: 'journal', label: 'Journal', Icon: JournalIcon },
-]
+function cls(active: boolean) {
+  return `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+    active
+      ? 'bg-accent/10 text-accent'
+      : 'text-muted hover:text-text hover:bg-surface'
+  }`
+}
 
 export default function LeftNav({ view, onViewChange }: Props) {
+  const pathname = usePathname()
+  const isAdmin  = pathname.startsWith('/admin')
+
+  // ── Render one nav item — either a view-switcher button or an anchor link ──
+  function ViewItem({ id, label, Icon, desktopSize, mobileSize }: {
+    id: PortfolioView; label: string
+    Icon: React.FC<{ size?: number }>
+    desktopSize: number; mobileSize: number
+  }) {
+    const active = !isAdmin && view === id
+
+    // On admin pages navigate away; on portfolio pages switch view in-place
+    if (isAdmin) {
+      const href = id === 'journal' ? '/?tab=journal' : '/'
+      return (
+        <>
+          {/* Desktop */}
+          <a href={href} className={`hidden lg:flex ${cls(false)} no-underline`}>
+            <Icon size={desktopSize} />{label}
+          </a>
+          {/* Mobile tab */}
+          <a href={href} className={`flex-1 lg:hidden flex flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium text-muted no-underline`}>
+            <Icon size={mobileSize} />{label}
+          </a>
+        </>
+      )
+    }
+
+    return (
+      <>
+        {/* Desktop */}
+        <button
+          onClick={() => { onViewChange?.(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          className={`hidden lg:flex ${cls(active)} w-full text-left border-0 cursor-pointer bg-transparent`}
+        >
+          <Icon size={desktopSize} />{label}
+        </button>
+        {/* Mobile tab */}
+        <button
+          onClick={() => { onViewChange?.(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          className={`flex-1 lg:hidden flex flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium transition-colors border-0 cursor-pointer bg-transparent ${active ? 'text-accent' : 'text-muted'}`}
+        >
+          <Icon size={mobileSize} />{label}
+        </button>
+      </>
+    )
+  }
+
   return (
     <>
       {/* ── Desktop sidebar ─────────────────────────────────────────────── */}
       <aside className="hidden lg:flex flex-col fixed left-0 top-[60px] bottom-0 w-[220px] border-r border-border bg-bg z-40">
-        <nav className="flex flex-col gap-1 p-3 pt-5 h-full">
-          {/* View switchers */}
-          {NAV_ITEMS.map(({ id, label, Icon }) => (
-            <button
-              key={id}
-              onClick={() => { onViewChange(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-left w-full border-0 cursor-pointer ${
-                view === id
-                  ? 'bg-accent/10 text-accent'
-                  : 'text-muted bg-transparent hover:text-text hover:bg-surface'
-              }`}
-            >
-              <Icon size={17} />
-              {label}
-            </button>
-          ))}
-
-          <div className="flex-1" />
-
-          {/* Divider */}
-          <div className="h-px bg-border mx-1 mb-2" />
-
-          {/* Admin link */}
+        <nav className="flex flex-col gap-1 p-3 pt-5">
+          <ViewItem id="home"    label="Home"    Icon={HomeIcon}    desktopSize={17} mobileSize={20} />
+          <ViewItem id="journal" label="Journal" Icon={JournalIcon} desktopSize={17} mobileSize={20} />
           <a
-            href="/admin/login"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted hover:text-text hover:bg-surface no-underline transition-colors"
+            href="/admin"
+            className={`${cls(isAdmin)} no-underline`}
           >
-            <AdminIcon size={17} />
-            Admin
+            <AdminIcon size={17} />Admin
           </a>
         </nav>
       </aside>
 
       {/* ── Mobile bottom tab bar ───────────────────────────────────────── */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-bg/95 backdrop-blur-[10px] border-t border-border flex">
-        {NAV_ITEMS.map(({ id, label, Icon }) => (
-          <button
-            key={id}
-            onClick={() => { onViewChange(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-            className={`flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium transition-colors border-0 cursor-pointer bg-transparent ${
-              view === id ? 'text-accent' : 'text-muted'
-            }`}
-          >
-            <Icon size={20} />
-            {label}
-          </button>
-        ))}
+        <ViewItem id="home"    label="Home"    Icon={HomeIcon}    desktopSize={17} mobileSize={20} />
+        <ViewItem id="journal" label="Journal" Icon={JournalIcon} desktopSize={17} mobileSize={20} />
         <a
-          href="/admin/login"
-          className="flex-1 flex flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium text-muted no-underline"
+          href="/admin"
+          className={`flex-1 lg:hidden flex flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium no-underline transition-colors ${isAdmin ? 'text-accent' : 'text-muted'}`}
         >
-          <AdminIcon size={20} />
-          Admin
+          <AdminIcon size={20} />Admin
         </a>
       </div>
     </>
