@@ -9,6 +9,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'Mind Scribe',
+    description:
+      'AI tutor for arXiv white papers — paste any arXiv URL, read the PDF in-browser with native text selection, and highlight any passage to ask Claude contextual follow-up questions. Features streamed responses via SSE, built-in tutor commands (summarize, quiz me, key contributions), and an optional S3-backed paper library.',
+    tags: ['React', 'TypeScript', 'FastAPI', 'Python', 'Claude API', 'PDF.js', 'AWS S3', 'Terraform'],
+    icon: '📜',
+    href: 'https://mind-scribe.fyi/',
+    githubHref: 'https://github.com/atewari-bot/mind-scribe',
+  },
+  {
     title: 'Drone Image Classification',
     description:
       'Computer vision system that detects drones, helicopters, airplanes, and birds in aerial imagery. Achieves 98.25% accuracy with an optimized Random Forest (500 trees) and 90.5% spatial localization via Fast R-CNN — trained on 2,100 samples across 4 classes.',
