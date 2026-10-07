@@ -1,137 +1,1204 @@
 %PDF-1.4
-%“Œ‹ž ReportLab Generated PDF document (opensource)
+%âãÏÓ
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 8 0 R /F4 9 0 R
+/Producer (pypdf)
+/Author (Ajay Tewari)
+/Title (Ajay Tewari Resume)
+/CreationDate (D\07220261007105615)
+/ModDate (D\07220261007105615)
 >>
 endobj
 2 0 obj
 <<
-/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+/Type /Pages
+/Count 2
+/Kids [ 4 0 R 11 0 R ]
 >>
 endobj
 3 0 obj
 <<
-/BaseFont /Times-Roman /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+/Type /Catalog
+/Pages 2 0 R
+/Outlines 13 0 R
 >>
 endobj
 4 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (mailto:mail.ajaytewari@gmail.com)
->> /Border [ 0 0 0 ] /Rect [ 249.7505 716.2 357.7085 727.6 ] /Subtype /Link /Type /Annot
+/Contents 5 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
+/Annots [ 14 0 R 15 0 R 16 0 R 17 0 R ]
 >>
 endobj
 5 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://linkedin.com/in//)
->> /Border [ 0 0 0 ] /Rect [ 369.1085 716.2 403.9355 727.6 ] /Subtype /Link /Type /Annot
+/Length 10280
 >>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 45.6 729.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F2 22 Tf 24 TL 186.777 0 Td (AJAY TEWARI) Tj T* -186.777 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 715.6 cm
+q
+0 0 0 RG
+n 204.1505 1.3125 m 312.1085 1.3125 l S
+n 323.5085 1.3125 m 358.3355 1.3125 l S
+n 369.7355 1.3125 m 398.2355 1.3125 l S
+n 409.6355 1.3125 m 443.4175 1.3125 l S
+BT 1 0 0 1 0 2.5 Tm 77.3825 0 Td 12 TL /F2 9.5 Tf 0 0 0 rg (Fremont, CA  ) Tj (|) Tj (  408-444-1792  ) Tj (|) Tj (  ) Tj (mail.ajaytewari@gmail.com) Tj (  ) Tj (|) Tj (  ) Tj (LinkedIn) Tj (  ) Tj (|) Tj (  ) Tj (GitHub) Tj (  ) Tj (|) Tj (  ) Tj (Portfolio) Tj T* -77.3825 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 697.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Summary) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 695.9 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 45.6 645.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 37.6 Tm /F2 10 Tf 11.9 TL (Staff software engineer with 19 years of experience designing and operating distributed, cloud-native backend systems and) Tj T* (microservices on AWS and GCP. Expertise in Python and Java, streaming architectures \(Kafka\), NoSQL databases, and) Tj T* (containerized environments. Proven track record optimizing caching strategies to reduce cloud costs and driving analytics) Tj T* (solutions. Skilled in applying AI to enhance conversational and semantic search pipelines.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 643.3 cm
+Q
+q
+1 0 0 1 45.6 625.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Experience) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 623.6 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 39.6 608.1 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Xero) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 86.223 0 Td (Apr 2026 - Present) Tj T* -86.223 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 596.1 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer \(Technical Lead\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 109.666 0 Td (San Mateo, CA) Tj T* -109.666 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 572.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed, built, and launched a new subscription service from 0 to 1 within weeks of joining, scaling it to process 34 million) Tj T* 8 0 Td (events per day as adoption grew.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 536.1 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 25.7 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Architected and developed AWP Yoda, a suite of tools for end-to-end testing, usage adoption dashboard, regression testing,) Tj T* 8 0 Td (A/A testing and A/B testing at scale, from the ground up; adopted by multiple consumer teams, with rollout to additional) Tj T* (teams underway.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 511.8 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Built an end-to-end BDD smoke test suite that gates PRs and deployments by verifying the AWP platform works across every) Tj T* 8 0 Td (environment, catching issues before customers do.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 487.5 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Built PR Sentry, a multi-model AI code reviewer deployed as a reusable GitHub Action, adopted by Xero repositories as a) Tj T* 8 0 Td (change-management control for pull requests.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 483 cm
+Q
+q
+1 0 0 1 39.6 470.5 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Roku Inc.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 76.0065 0 Td (Aug 2021 - Mar 2026) Tj T* -76.0065 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 458.5 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer \(Technical Lead\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 117.446 0 Td (San Jose, CA) Tj T* -117.446 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 434.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to design and develop conversational agent components powered by generative and agentic AI, including model) Tj T* 8 0 Td (evaluation pipelines and semantic caching, utilizing end-to-end regression pipelines to ensure robustness.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 410.4 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Architected and implemented distributed systems and cloud-native microservices using Docker and Kubernetes on AWS,) Tj T* 8 0 Td (leveraging Python with strong software design principles.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 386.1 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td -0.027 Tw (\177 Led a team to build a multi-turn dialog manager for media and IoT queries, orchestrating agentic workflows that enhanced user) Tj T* 0 Tw 8 0 Td (experience.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 373.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented caching strategy using Redis to optimize cloud costs, reducing downstream service traffic by 9%.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 361.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Drove improvements in user engagement for voice music queries, achieving a 7% increase.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 348.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led cross-functional initiative to boost engagement for sports and live channels.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 344.4 cm
+Q
+q
+1 0 0 1 39.6 331.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Optimizely, Inc) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 79.503 0 Td (Oct 2019 - Aug 2021) Tj T* -79.503 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 319.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer \(Technical Lead\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 94.666 0 Td (San Francisco, CA) Tj T* -94.666 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 296.1 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to deliver scalable backend microservices for billing on AWS using Python and Domain-Driven Design, which) Tj T* 8 0 Td (reduced billing processing latency and improved system reliability) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 283.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and launched an Entitlement Management System to handle hundreds of entitlements across diverse products.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 259.4 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Optimized batch usage counting system to process billions of events from 1500+ enterprise accounts, streamlining evaluation) Tj T* 8 0 Td (of Monthly Unique Visitors and Impressions.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 247 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Built an automated GDPR compliance platform to efficiently manage customer Subject Access Requests.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 234.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Developed backend APIs for impressions usage counting and billing visualization, enhancing reporting capabilities.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 210.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Championed tech debt reduction initiatives to improve platform performance, scalability, and adaptability, enabling 2x) Tj T* 8 0 Td (business growth through agile practices.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 205.8 cm
+Q
+q
+1 0 0 1 39.6 193.3 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Oracle, Corporation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 81.834 0 Td (Jan 2017 - Oct 2019) Tj T* -81.834 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 181.3 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 117.446 0 Td (San Jose, CA) Tj T* -117.446 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 169.4 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Optimized cost sheet component performance, reducing summary record update performance \(O\(n\) to O\(k\)\).) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 157 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented bulk print functionality, reducing business processes documents print time by 80%.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 144.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Redesigned end-to-end line items consolidation, which resulted in 60% latency improvement.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 120.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed, built, and unit-tested backend APIs for web-based cost sheet components with Java and MySQL, delivering more) Tj T* 8 0 Td (reliable data handling for downstream services) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 107.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and developed reusable attachment picker component for file uploads.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 103.4 cm
+Q
+q
+1 0 0 1 39.6 90.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Exilant, Technologies / Apple Inc.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 79.5135 0 Td (Apr 2016 - Dec 2016) Tj T* -79.5135 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 78.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Technical Lead) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 111.616 0 Td (Sunnyvale, CA) Tj T* -111.616 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 55.1 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to implement REST-based microservices APIs for Kafka producer/consumer using Docker containers, enabling) Tj T* 8 0 Td (faster deployment and more reliable message processing) Tj T* ET
+Q
+Q
+ 
+
+endstream
 endobj
 6 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://github.com/atewari-bot/)
->> /Border [ 0 0 0 ] /Rect [ 415.3355 716.2 443.8355 727.6 ] /Subtype /Link /Type /Annot
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
 >>
 endobj
 7 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://atewari-portfolio.vercel.app)
->> /Border [ 0 0 0 ] /Rect [ 455.2355 716.2 489.0175 727.6 ] /Subtype /Link /Type /Annot
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 8 0 obj
 <<
-/BaseFont /Times-Bold /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 9 0 obj
 <<
-/BaseFont /Times-Italic /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 10 0 obj
 <<
-/Annots [ 4 0 R 5 0 R 6 0 R 7 0 R ] /Contents 15 0 R /MediaBox [ 0 0 612 792 ] /Parent 14 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 
-  /Trans <<
-
->> /Type /Page
+/BaseFont /Times-Italic
+/Encoding /WinAnsiEncoding
+/Name /F4
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 11 0 obj
 <<
-/Contents 16 0 R /MediaBox [ 0 0 612 792 ] /Parent 14 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/Contents 18 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
 >>
 endobj
 12 0 obj
 <<
-/PageMode /UseNone /Pages 14 0 R /Type /Catalog
+/Filter [ /ASCII85Decode /FlateDecode ]
+/Length 3110
 >>
+stream
+Gb"/)?$G!n&q/*0W0bVGFtcB-I-$?Lf]r[$mD)D=ccJg))X(:$CKclAk1B(((;aIpen-$8HhR4S%-gloWk.KHX_KlG^n5+$K8AaILsF9dEa0MWamn[\N<]#`o]jb(c>of>XLG.q47tLL_"EGqDJ$(kCH9H*af0Ju'O`__S;(=n?5_+(#?+)*3r/'JgN8us.T1c<$%3H84$f!&;_aIb"ZfEM#bsF-,;MjN"o4-bl>LA.NCNr@jXLi/(4T-!F1ZS`&E:BipG15)`!c6sdQkaUMJ&/f*T@1LMDR8R/Pf@Ta[sL?aqhLY)&8q^KlpRDoKe0GYm;-`,bTubk@6*fKH=)NVp%\W3Yj1,(mu5/6==5=4Oo148J4Y\$YYbB0qG?&EM]\H\8W>LZ9I8j1",?1GA1c^XjG2GEj`b5pXl<.DIF4i$e1Zb')[5E-bUXQ@_=LL_$ur4?_r=Ni?HNWPa72CC#HDS]%?G$n=^k9mPrJQL4%34EZ:$+Vm*2[YH@B+V].En;VXI$``fLn5*FIoN<N'H176*3&0VLYQlO%4Rnn!nG2;ms9CiQ\9HSC,CXhgTm'8?WY?e6%[9A%8Gs5iQHDaB^$ohK?P9M26KlbF^L/=0_-'%4-ok"Oc+lWfV<(:iR:LpElV4h]X8Xg%#7>R+pN8S`@(d5unN2B'7N+%921<_R9T?YPFKNmh81n@$4B)FV#L5=%b\0<B=PLE2-=SD/Q@>s?"_"bT:eL\0(0d.84$s4nTrqp1aU&m6m,.NgRmbM-F(,WHn+Fk[*,Z_5iBXGF)Ts`\oQ82P#KG'R.8h@*7hR[*o<Dfr_:GEs+CnBllbqgsG5gXqiB'`J$\`#*6ii*N(B&GEQALoP`Sg"3?1M%2jL.L>$9O\]`Akbc.1SNebUON`.BDpfPEtVW1h((YcqFbaO;cV/WYho/3Yl7'Wko*^+dR_H;@mN,jV<O=C5*QB6G6:ZJUA?+!YKqS;b+%4Z"Q_ug/,9!<:U::$jWBeEFp(WsqHg)<oQPg\&`tFDdAL<10&qd$l\8TfHlh"2R!).SH]V`jR(6:L/-*o89W2oQX]e+LgKsjBE\<d6,DTcK2rr;H+:u^2ASuXKUq,l^c.4LaNYBD1MbCWH6;3CS]h[DVRZBif7`[LALu'nK+.[G#jpTT&qa[s=s&eo>mU<WHH:H]6eMi,eiU)02N&]92,6W%=r)a)CU.mO7N^S>\"rG'J!m.h[Xqrkso'/BT`c@?LM!letO4uW.8_FdHi^oe=J4b`t_X:I/U'cmN)<d_C0KSSfXh]IKI+.*i7J%SsAQatSJ*'S1.c`M#D%^;Jr(aR8Go8+PX-I<bm/tG>AP1:tCVSnp/rflA)#UmkbiamcZ2G;<pL*5Q)X`1f^X]<q57:j`?!`QTpR%q!$6FI<Qu0b':8`cu?9Vkdo`;C#@UTjmKcV0hT8-PkM<HpBH31ES+P+u6r7"T,j.#FaPf:HNYdOiWFB;R+cOn>U"i/aRHD8iuG`'#so:JNXhfDHRhd$8LZ!56=@s"(.0>lL-]\$s?4mD:fV"-g@]=5tWo#;>h0/>i2Z8P9if_&XtV:Im=_`]bU#^22=[`6pE)Tq25E(?n9OlYdblBt=?<M2`nmgVWAP5r(o>'\fATc9b>7RWAeg,7ebfFiKjN:k&U7NjY0e/l*(;MC#[3!0j?.4`tl0/1b)b:4o?UYfV%g1/MH&Ah]Slh8Efo&qB1lH@$Y0=^'5&M%Pj&U:TsG[7LHDEANKO1WcM,04>"DIQPcSrJ4m^\?u`1j:^>$i9.sg@S5rRrb(ojgLK:R+n^,5.jXcgks#7f_[G"V4L5)rD;\8-q4?-@\ooH90C+LIu`kt?/TmQ:VQFhh&ja_O$159SI37Nr5rf`s%_8uf'lrR+2R(A&^PJ]-[5tlDs:krc#m9dd3=^j^o/M?q^Cl$n[1h&)KDl,ZMogak]TcI*j)jo:'[ce(eD7d!4J0igq*Qhc1mYLT\^u&%tFfjAScnIkRTopfN&<!.D84$",b1KLBtFu%LDL[e/17l=Ji:l\F8*LKIr)lMl[^M[a9=Rm1Xi5B30^%Hg-7#)Qg;<HXKr)Jh.TR1Z09KJ;E6feh]M9fU,oXVqpcunf:bMRl4VpifkW:o?*rkb"P2$!';QY8m*-le`a=B9rKC#WnO4Uq;l3Mnhm$u>ph)6!MA,(][st?1TZ]q7^1uO=QX,:#V9="S?nL`($FJTklhEB'`>\nYsQfV13u[HA+$ITYmO.d]V3gY;upncBZ*<bW_![u],N[=i(Z,RG?B>,Mb(U4`s<i?&7jp<@F=L%c,K;:SM)JNqo=QR5Ia#\0jkhR3o".^Q2NK\TAa-*`mnUB\pI?#hZ`6Z>?rV5E1&55KJR%cX*3mKPsXkB2XG0`QSB_nD*'c`IC03Ifr@2K>+X[gZukuZU>XlT_N3_mGJ.&`;Dlb1+KkpsY1"j3@r'$IG+NJqlm!F@AY<\@.LmVhha,?*$UQi/<=AAQl%[Z,NW\#X^<7o2Kiuba0q$/NEp.L0+;0$57qk/I<,17D*X8cg=X;?'AmDG=ij?;;62"Xb"'e_l`CA8,P?[5Br819@l^M`chnaHYerr7Riqil9=&FfdlSpSISS)X@De#JY$Mh3)A')0ek_G$WC1b^fD9L2D)6_E%HuasD;*,o^;5!n<%l;1CB+11LMPXeH[Uu/i?3.qm,Chr5fMk^3H>5I`SqiW$magUQZX:G\WMm/d*[a#l1!>M%h5@=&pluJoi[eC/*2E'7l]=QM2i[T+*GTVm&lmU!7H9#X.lJCg[o:)jp5%1BmK@2F2Y-/KaEhomcl$3nbWX%,;*g4*Gl]'-.g#@\IE8S#X)Rud)tJiRO@P=@VC,ZjF.LALp;E5T`YFMY*4PRYh.JD.Q]<=uHme'`;/\Fcho<$YAQ4]Pr$G$uaRmurob)rRQl\Z<Y9D,$R#j_865i4G0-SW"7^^;rjLDL14"qIA_-&1or<If%6CXC!eR&`qpVJ>LVh@kHZP$]+;L<.WR\dhUQ.1SU&ck<Jig8-r<2Y8V[DU`^]s?e'mdbjW!.nGhkX\kr^rLmI'aMamZ_O17Hl@ehJL9:H(abaCb=%_h#X5GtDf3XCX6E_s_7UZrq2L!ZgqKLarrIi"AM4~>
+endstream
 endobj
 13 0 obj
 <<
-/Author (Ajay Tewari) /CreationDate (D:20260808111922-07'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260808111922-07'00') /Producer (ReportLab PDF Library - \(opensource\)) 
-  /Subject (\(unspecified\)) /Title (Ajay Tewari Resume) /Trapped /False
 >>
 endobj
 14 0 obj
 <<
-/Count 2 /Kids [ 10 0 R 11 0 R ] /Type /Pages
+/A <<
+/S /URI
+/Type /Action
+/URI (mailto\072mail\056ajaytewari\100gmail\056com)
+>>
+/Border [ 0 0 0 ]
+/Rect [ 249.7505 716.2 357.7085 727.6 ]
+/Subtype /Link
+/Type /Annot
 >>
 endobj
 15 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3527
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057linkedin\056com\057in\057\057)
 >>
-stream
-Gb!l!?#Sa](4Df^_3Y4k?!Cfep^?u)Bp6hSRb;;9luictKpHDA'1l.P.^"^.nTul;ag0r`NN#hj=9OF#M'@3umlfjhX8$L]+5d'X1WI/BBCES/R3/[13V+IK@e\L@o)?leDu=ol2"X7R*),lac>\2>YNs.H4R0D^iV<m<"Y?l6"a1r:1@iHF0lGkrm-OYfq9SF,nu)*6X1.Hp1V<YplYhcuZCgWm]<jfX?MaBoS"'Y7aRb1>+nNCo%u)WFq!e3tUqMqs4,aQ"cl7/2@bbq^L#Hupgh>u44'+.S3q7f7j.ZPoYr+.k68.oM>N<.tisj*jj09CqE8R*Vrk>i?RaU"PCV7g8^=OQ-\`pBfc5EsK3r?,X?s%j*O.rTAO/Kh#S*i)m1A1ET^,BH>[J]p=?AMUi4`';\CRIDEj=5Y!d!KL+;9`DeEhg"0X&Q+mKX]1^J&7uFpo**XRIAla%EWm.G?'rK]l$mIdbI3.lK7f[Ck\?#\m\!61,]OFh?;a"kk<8Phr.6*$YfW`r;-T.73ASa9c?3fZVo$W:.$^t04Z\gAh.S]bb)2Ki4<H6cGZo?cr/r0@#6;n,+&+WnN:4ef=@Ti&m6,)B9a'#O2\)uP(&EQ:P-i9r$X8->aIoj,sBkijXcV#<i+/=1)<t@BBMM8fnnU9GN5r$>1Ubm0U]8:[96r=h>G'\G`Q8r_)&\:*A=6$Z)KQlGrY\PcQDu#gE-6i])-To&oRK'Q_Nh`XW8XJ3=OL02j(oN-`L+;M;4=:]@#n8jNM<(SS8Zd9stt.akpdJQt&F0@LLtIKuBu\@9c^H6e6JtX3t*S=eb#Ao+t3S7`K#OK2SP2OXeD'GE4LRYmhPmM]uHU"6W`BX2pWt*09JN$!hRtJ>[SQ;Iho1N;,^l@"g."$B%OF5hlATCs5#V'-)h*rR$)I`lEXa!I1BC&,;6*IPdF:rpq^FU2]'34JN3Q-q>+3E.I+U=G1,_&R'V1Ui7#mi?8!>\Nqi6&2s/ZBWsr[@XWp$-kV+a7WlbZ>PPSO1W/J@Pro^s9lP8'EiCn-COkHN!KMrAHP%oP)'_DM"]$2rT#>p/bPT4uUJ^Eh4.`d>84#b8[%ZpUQnNd1`oM(Y]G0p#((V"<HP*VLWH[mj6RQ,@BI*MF<AHEID-4r]4C05<3QoC!Q.;sp[4E_a=UfapY#U45OR0^#?@]g`LdqidT9U\/"l-qnKF6/S^d9OoB$%oGAO$aLf%Ahq8N[TL0dJ(GE6UAX-rFm<Kbg]k&2B+j-h5<("3om-!^gcS"`#AKqA].78iX?fY\/V9=9DFmNTq0a(f?`VB8fa>pk5!WRGo,K[SAVO!GbYg+]\%kB-HE/X`qHE")mtg_E5A$3J;q&iujGTUH>SUi3r;1:D-g*/.F!FVAFQtf8"_XF;pi#P#<t]pk5K$EiJaNm@GbO<*8.RUMLoKLCKY3Qb#"3J/XGAD$Y85%\[O8_Rc&RYt/XGht:/o>+3iO/.LTp#eRGOO`M#B,aqK%g/$[jb7Z(lb0m-7[hfk::dI!iHC[F])e9gqNfK:hcPP5M%X(SN6icc@>UIBh/jX&LUk3t\hWB,-qNP[qj,k["\L4_P^be\PhI=TmO?Q9@cs*F_;tik'^r)P78.UGL1`l(;mB9*ib,C8_+[qZn=T+SD]V3<."SC?a0&W`WCilNGj#g<ldR9W+J9MXR49.C,F-g.>U[Y>m,_u,@,,Y'*;43&;&"F>Y7Usj8%j^pSoiSK"4T=nhIiljp8)@W-)E'EZ/VrP;d/6E%(k5JBF@X&=oMP8\61k0/K;flcs+"9]S*.CN?KV&33#0bH>6lGF,D^=C;4$(08bE61/um\njc5PTb(BM,c#Ck'*pP#?T/776rqrc$:5mXOTmY%FPj*7<k@s$KT[j"q<C'oeoGEIEe.jSVbhV,\kBU9MPUN<BLU4!;\9=g<#cFl$'Y:g0.5&5DjE@*)>t\3EfmBDhHYPY9LM@$M+\Z*Qp3&TfiqP?;cuX?7BpA^b<`JBB8PgLR!VhR!p3=qMj52Ktq?(XIN7n/ED[;N]Uqa5c26p#^%?L$Y+`^D$0&Q`.*L7":['$o:pC,Q%M@K(4d1[e6l2YYr!A)8c;hRJK_82,A"56NiNbo)Ia;lN*:`beeLBH\='-K@?q78ch>F95Z\uskuMY!DifWD5SX5$:C<g.$fq&GD[N_[@ZG!b9uQ:7"7Sb)_0]:eRZc*tP]<bOR84]*kma@\EQdjIS2c!YD$3Do@$E%M;Qre>A[PO^`^Li<LZ3e7kWU/if<kGWoG."i-hd\SJ5Xhm*bRT(%pf:<Qf_(8(:jWZ:;h0uS0<.t6mT38?B.XnIo/RA*A>J-9/J45*fJad/c+=I(9PXQfP2ThaMn7?#?%`Y^5V*C6LQps.HK^UeF9pY<m';7MSASi#Q:0%,WC("5Ng=dY!c_d&?c#o7/1[5#ajm*tf_nSsmoE(;/bki2[;Ie1`.T#soA\?g[6.a.Ng*u>o"+<Vs%#A87l@G7`WPFZ:c_*mXR/qp0M&;n"\El%UEeKX=`fU@VG2C$XS_GP4$VX.Mc6[3E=R1:gRqKm@b"]tSW#=ptnjj/rU=7%I"!]c3DW2tf'S_.MWn^Kpfili]K4_8"jNMW2+58+3LP*EMaZuPn>$qk55+8>'D%O(;E]56tiCB0&A\)LRasEF0rEGR#<NcL>:iWT`%uHu&N*^h$Er=U?9.`%_CYfi?mk8QrXis6S;THF`gH8<?7-9RY"r90q`+%q7Pp*d-WnD%K:3I[_0Aa:Gq:NSS=V7/NR%)B'PN:mc="^uD`kAuM5i-GMoLY>`LX<LXfW-kKh9^a5e\/I@>`)-nUj`5aHq;a,):%+kGue<cJm*L,k=!OQP@1hTfgl4GfP5N]*$XGiI<+)PEI_`-`cZ9G_@+h!&NTNA?uPQ#DC!O6)<mM)>-4IcRjJVeInGRCZ((N]VY@!^lYAYY:k(7QkH@r")VAq"'sZ1HiN:<ep"Ki2RtOZ+_[i9oEVj7%NCJ,.?<;4Q^+;2?d9aB]a,,d?IETJL*[$X+OCc<S<;3V;.7C'SZ(5!68Q<8;fZhUcW^qZFh6E&V5<bV!%rWn$na5l*mDI['0dSjm$$8hU=d;2)U)[`4>B!\$BPhL*^EuVs9qpXi;8.AkSe>#o9a4*'I=?Dbr(!mCaI,eiL>"CVg4i*+pfFFgC3[59%CVNMqV@(idGUKpTQQ.4,OH><$Kq/t#-3:BI;5;@j0t;@p#uYYrW"NU)hq\qgSmB>mlk%O)K"j;@p1u2Z(shil-tW8HB3g/EmLfbnn#2#%Sp"9Ds>fsRkQEZlEjQ/$u0u:<=<L[=.:b;NR*HUWZkG*3Kh(Rra(a+:]@k5q!qLSEr)+G>M,oSfmf?5a3G(Rm]3eQ;>0ipgNp>IfR8(`IN`1tFfRcF8%qZ#UV5KGdrX)`(&TOTja/5eAZ@6+f22LZ<7Mk-W4W$Y"`W3!B"++NpGGKX(V_PZf`1fI9/WF#&R8?^n$b?om6CQ6)jRo@*HM^X!_`l1RXJ[^o9DRq[A]7>5"LKJC?(j@@W25N<W).<~>endstream
+/Border [ 0 0 0 ]
+/Rect [ 369.1085 716.2 403.9355 727.6 ]
+/Subtype /Link
+/Type /Annot
+>>
 endobj
 16 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3110
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057github\056com\057atewari\055bot\057)
+>>
+/Border [ 0 0 0 ]
+/Rect [ 415.3355 716.2 443.8355 727.6 ]
+/Subtype /Link
+/Type /Annot
+>>
+endobj
+17 0 obj
+<<
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057atewari\055portfolio\056vercel\056app)
+>>
+/Border [ 0 0 0 ]
+/Rect [ 455.2355 716.2 489.0175 727.6 ]
+/Subtype /Link
+/Type /Annot
+>>
+endobj
+18 0 obj
+<<
+/Length 10686
 >>
 stream
-Gb"/)?$G!n&q/*0W0bVGFtcB-I-$?Lf]r[$mD)D=ccJg))X(:$CKclAk1B(((;aIpen-$8HhR4S%-gloWk.KHX_KlG^n5+$K8AaILsF9dEa0MWamn[\N<]#`o]jb(c>of>XLG.q47tLL_"EGqDJ$(kCH9H*af0Ju'O`__S;(=n?5_+(#?+)*3r/'JgN8us.T1c<$%3H84$f!&;_aIb"ZfEM#bsF-,;MjN"o4-bl>LA.NCNr@jXLi/(4T-!F1ZS`&E:BipG15)`!c6sdQkaUMJ&/f*T@1LMDR8R/Pf@Ta[sL?aqhLY)&8q^KlpRDoKe0GYm;-`,bTubk@6*fKH=)NVp%\W3Yj1,(mu5/6==5=4Oo148J4Y\$YYbB0qG?&EM]\H\8W>LZ9I8j1",?1GA1c^XjG2GEj`b5pXl<.DIF4i$e1Zb')[5E-bUXQ@_=LL_$ur4?_r=Ni?HNWPa72CC#HDS]%?G$n=^k9mPrJQL4%34EZ:$+Vm*2[YH@B+V].En;VXI$``fLn5*FIoN<N'H176*3&0VLYQlO%4Rnn!nG2;ms9CiQ\9HSC,CXhgTm'8?WY?e6%[9A%8Gs5iQHDaB^$ohK?P9M26KlbF^L/=0_-'%4-ok"Oc+lWfV<(:iR:LpElV4h]X8Xg%#7>R+pN8S`@(d5unN2B'7N+%921<_R9T?YPFKNmh81n@$4B)FV#L5=%b\0<B=PLE2-=SD/Q@>s?"_"bT:eL\0(0d.84$s4nTrqp1aU&m6m,.NgRmbM-F(,WHn+Fk[*,Z_5iBXGF)Ts`\oQ82P#KG'R.8h@*7hR[*o<Dfr_:GEs+CnBllbqgsG5gXqiB'`J$\`#*6ii*N(B&GEQALoP`Sg"3?1M%2jL.L>$9O\]`Akbc.1SNebUON`.BDpfPEtVW1h((YcqFbaO;cV/WYho/3Yl7'Wko*^+dR_H;@mN,jV<O=C5*QB6G6:ZJUA?+!YKqS;b+%4Z"Q_ug/,9!<:U::$jWBeEFp(WsqHg)<oQPg\&`tFDdAL<10&qd$l\8TfHlh"2R!).SH]V`jR(6:L/-*o89W2oQX]e+LgKsjBE\<d6,DTcK2rr;H+:u^2ASuXKUq,l^c.4LaNYBD1MbCWH6;3CS]h[DVRZBif7`[LALu'nK+.[G#jpTT&qa[s=s&eo>mU<WHH:H]6eMi,eiU)02N&]92,6W%=r)a)CU.mO7N^S>\"rG'J!m.h[Xqrkso'/BT`c@?LM!letO4uW.8_FdHi^oe=J4b`t_X:I/U'cmN)<d_C0KSSfXh]IKI+.*i7J%SsAQatSJ*'S1.c`M#D%^;Jr(aR8Go8+PX-I<bm/tG>AP1:tCVSnp/rflA)#UmkbiamcZ2G;<pL*5Q)X`1f^X]<q57:j`?!`QTpR%q!$6FI<Qu0b':8`cu?9Vkdo`;C#@UTjmKcV0hT8-PkM<HpBH31ES+P+u6r7"T,j.#FaPf:HNYdOiWFB;R+cOn>U"i/aRHD8iuG`'#so:JNXhfDHRhd$8LZ!56=@s"(.0>lL-]\$s?4mD:fV"-g@]=5tWo#;>h0/>i2Z8P9if_&XtV:Im=_`]bU#^22=[`6pE)Tq25E(?n9OlYdblBt=?<M2`nmgVWAP5r(o>'\fATc9b>7RWAeg,7ebfFiKjN:k&U7NjY0e/l*(;MC#[3!0j?.4`tl0/1b)b:4o?UYfV%g1/MH&Ah]Slh8Efo&qB1lH@$Y0=^'5&M%Pj&U:TsG[7LHDEANKO1WcM,04>"DIQPcSrJ4m^\?u`1j:^>$i9.sg@S5rRrb(ojgLK:R+n^,5.jXcgks#7f_[G"V4L5)rD;\8-q4?-@\ooH90C+LIu`kt?/TmQ:VQFhh&ja_O$159SI37Nr5rf`s%_8uf'lrR+2R(A&^PJ]-[5tlDs:krc#m9dd3=^j^o/M?q^Cl$n[1h&)KDl,ZMogak]TcI*j)jo:'[ce(eD7d!4J0igq*Qhc1mYLT\^u&%tFfjAScnIkRTopfN&<!.D84$",b1KLBtFu%LDL[e/17l=Ji:l\F8*LKIr)lMl[^M[a9=Rm1Xi5B30^%Hg-7#)Qg;<HXKr)Jh.TR1Z09KJ;E6feh]M9fU,oXVqpcunf:bMRl4VpifkW:o?*rkb"P2$!';QY8m*-le`a=B9rKC#WnO4Uq;l3Mnhm$u>ph)6!MA,(][st?1TZ]q7^1uO=QX,:#V9="S?nL`($FJTklhEB'`>\nYsQfV13u[HA+$ITYmO.d]V3gY;upncBZ*<bW_![u],N[=i(Z,RG?B>,Mb(U4`s<i?&7jp<@F=L%c,K;:SM)JNqo=QR5Ia#\0jkhR3o".^Q2NK\TAa-*`mnUB\pI?#hZ`6Z>?rV5E1&55KJR%cX*3mKPsXkB2XG0`QSB_nD*'c`IC03Ifr@2K>+X[gZukuZU>XlT_N3_mGJ.&`;Dlb1+KkpsY1"j3@r'$IG+NJqlm!F@AY<\@.LmVhha,?*$UQi/<=AAQl%[Z,NW\#X^<7o2Kiuba0q$/NEp.L0+;0$57qk/I<,17D*X8cg=X;?'AmDG=ij?;;62"Xb"'e_l`CA8,P?[5Br819@l^M`chnaHYerr7Riqil9=&FfdlSpSISS)X@De#JY$Mh3)A')0ek_G$WC1b^fD9L2D)6_E%HuasD;*,o^;5!n<%l;1CB+11LMPXeH[Uu/i?3.qm,Chr5fMk^3H>5I`SqiW$magUQZX:G\WMm/d*[a#l1!>M%h5@=&pluJoi[eC/*2E'7l]=QM2i[T+*GTVm&lmU!7H9#X.lJCg[o:)jp5%1BmK@2F2Y-/KaEhomcl$3nbWX%,;*g4*Gl]'-.g#@\IE8S#X)Rud)tJiRO@P=@VC,ZjF.LALp;E5T`YFMY*4PRYh.JD.Q]<=uHme'`;/\Fcho<$YAQ4]Pr$G$uaRmurob)rRQl\Z<Y9D,$R#j_865i4G0-SW"7^^;rjLDL14"qIA_-&1or<If%6CXC!eR&`qpVJ>LVh@kHZP$]+;L<.WR\dhUQ.1SU&ck<Jig8-r<2Y8V[DU`^]s?e'mdbjW!.nGhkX\kr^rLmI'aMamZ_O17Hl@ehJL9:H(abaCb=%_h#X5GtDf3XCX6E_s_7UZrq2L!ZgqKLarrIi"AM4~>endstream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 45.6 741.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Optimized Kafka messages consumption rate by 40%.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 729.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Developed log scanning tool to measure business entity metrics.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 716.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Developed analytics dashboard with tree-based representation for Apple Care traffic analytics.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 712.4 cm
+Q
+q
+1 0 0 1 39.6 699.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Accenture LLP / Cisco Systems) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 82.4115 0 Td (Jul 2011 - Apr 2016) Tj T* -82.4115 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 687.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Technical Lead) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 117.446 0 Td (San Jose, CA) Tj T* -117.446 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 664.1 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team of 8 engineers using Agile and Jira to deliver the order management product from concept through production,) Tj T* 8 0 Td (meeting all release milestones) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 651.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and implemented REST based backend APIs for order management application.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 639.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Delivered build pipeline for 3 applications and optimized build time by 90%.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 626.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented security infrastructure and tooling to protect an enterprise application against XSS/CSRF attacks using OWASP.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 622.4 cm
+Q
+q
+1 0 0 1 39.6 609.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (Wipro, Technology) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 84.1545 0 Td (Sep 2010 - Jul 2011) Tj T* -84.1545 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 597.9 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 84.386 0 Td (Bengaluru, KA, India) Tj T* -84.386 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 586 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and implemented web services for retail services.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 573.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and implemented web-based dashboard for web services testing.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 569.1 cm
+Q
+q
+1 0 0 1 39.6 556.6 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (CGI Group) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 81.2355 0 Td (Jun 2007 - Sep 2010) Tj T* -81.2355 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 544.6 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Senior Software Engineer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 84.386 0 Td (Bengaluru, KA, India) Tj T* -84.386 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 532.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented and optimized PL/SQL stored procedures for portfolio performance reports for a investment bank.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 520.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and implemented a dashboard for daily investment bank portfolio performance.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 507.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and implemented a web based dashboard for cron jobs scheduling requests.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 503.4 cm
+Q
+q
+1 0 0 1 45.6 485.4 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Education) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 483.7 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 39.6 468.2 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (KIIT University) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 75.4185 0 Td (Aug 2004 - May 2007) Tj T* -75.4185 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 456.2 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Master, Computer Applications) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 55.496 0 Td (Bhubaneswar, Odisha, India) Tj T* -55.496 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 432.4 cm
+q
+BT 1 0 0 1 14 13.8 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Coursework:) Tj /F2 10 Tf ( Data Structures, Machine Learning, Internet Technology, Mathematics, Software Eng., Artificial Intelligence,) Tj T* 8 0 Td (Systems Programming, Operating Systems, Algorithms Analysis, Database Management, Computer Architecture, Networking) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 427.9 cm
+Q
+q
+1 0 0 1 45.6 409.9 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Certifications) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 408.2 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 45.6 393.3 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Certification in Machine Learning and Artificial Intelligence: UC Berkeley \267 Jan 2025 \226 Jul 2025) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 380.9 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (AWS Certified Cloud Practitioner: AWS \267 Feb 2025) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 377.4 cm
+Q
+q
+1 0 0 1 45.6 359.4 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Technical Skills) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 357.7 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 45.6 342.8 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Languages) Tj /F2 10 Tf (: Python, TypeScript/JavaScript, Go, Node.js, SQL, Java) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 318.5 cm
+q
+BT 1 0 0 1 14 13.8 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Artificial Intelligence) Tj /F2 10 Tf (: RAG, Agentic AI, Orchestration, Vector Databases & Semantic Search, MCP, Prompt/Context) Tj T* 8 0 Td (Engineering, Generative AI, AI/ML Systems) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 306.1 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Cloud Platforms) Tj /F2 10 Tf (: AWS, Google Cloud Platform) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 293.7 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Data & Streaming) Tj /F2 10 Tf (: Airflow, Apache Kafka, Redis, Temporal) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 281.3 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Infrastructure & DevOps/MLOps) Tj /F2 10 Tf (: Docker, Terraform, Kubernetes, MLFow, Linux) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 268.9 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Monitoring & Observability) Tj /F2 10 Tf (: Grafana, Datadog) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 256.5 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Databases) Tj /F2 10 Tf (: DynamoDB, Oracle, MySQL, NoSQL Databases) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 244.1 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Version Control) Tj /F2 10 Tf (: GitHub/Gitlab) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 219.8 cm
+q
+BT 1 0 0 1 14 13.8 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Software Architecture & Methodologies) Tj /F2 10 Tf (: Microservices, Unit Testing Frameworks, Agile Development, Software Design,) Tj T* 8 0 Td (Software Development, Distributed Systems) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 216.3 cm
+Q
+q
+1 0 0 1 45.6 198.3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Recognition and Awards) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 196.6 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 45.6 181.7 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Exemplary Badge:) Tj /F2 10 Tf ( Exemplary capstone submission from UC Berkeley ML Certification.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 169.3 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (ACE Team Award \(Q1-FY15\):) Tj /F2 10 Tf ( Best performing team award.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 156.9 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Outstanding Performer Award:) Tj /F2 10 Tf ( Client recognition for designing CI build pipeline.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 144.5 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Multiple Stellar Awards:) Tj /F2 10 Tf ( Key contributor recognition for exemplary contributions \(Q1-FY12, Q3-FY12\).) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 132.1 cm
+q
+BT 1 0 0 1 14 1.9 Tm -8 0 Td 11.9 TL /F2 10 Tf 0 0 0 rg (\177 ) Tj /F3 10 Tf (Monetary Awards:) Tj /F2 10 Tf ( 10+ points based monetary awards for small but impactful wins.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 128.6 cm
+Q
+q
+1 0 0 1 45.6 110.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 11 Tf 13 TL (Leadership / Extracurricular) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 108.9 cm
+q
+.7 w
+1 J
+0 0 0 RG
+n 0 0 m 520.8 0 l S
+Q
+Q
+q
+1 0 0 1 39.6 93.4 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL (KIIT University) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F3 10.5 Tf 12.5 TL 75.4185 0 Td (Aug 2004 - May 2007) Tj T* -75.4185 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 39.6 81.4 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (Founder Member) Tj T* ET
+Q
+Q
+q
+1 0 0 1 362.304 12 cm
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.6 57.6 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td -0.013478 Tw (\177 The mission of the club was to help each other to improve on our technical and soft skills by organizing various cultural, sports) Tj T* 0 Tw 8 0 Td (and academic activities.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 45.2 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Outcome was 200% increase in on-campus job offers compared to previous batch.) Tj T* 8 0 Td ET
+Q
+Q
+q
+1 0 0 1 45.6 40.7 cm
+Q
+ 
+
+endstream
 endobj
 xref
-0 17
+0 19
 0000000000 65535 f 
-0000000061 00000 n 
-0000000122 00000 n 
-0000000229 00000 n 
-0000000338 00000 n 
-0000000516 00000 n 
-0000000687 00000 n 
-0000000864 00000 n 
-0000001046 00000 n 
-0000001154 00000 n 
-0000001264 00000 n 
-0000001496 00000 n 
-0000001692 00000 n 
-0000001762 00000 n 
-0000002046 00000 n 
-0000002114 00000 n 
-0000005733 00000 n 
+0000000015 00000 n 
+0000000171 00000 n 
+0000000237 00000 n 
+0000000303 00000 n 
+0000000532 00000 n 
+0000010865 00000 n 
+0000010927 00000 n 
+0000011034 00000 n 
+0000011143 00000 n 
+0000011251 00000 n 
+0000011362 00000 n 
+0000011553 00000 n 
+0000014756 00000 n 
+0000014778 00000 n 
+0000014969 00000 n 
+0000015162 00000 n 
+0000015361 00000 n 
+0000015562 00000 n 
 trailer
 <<
-/ID 
-[<90ef3dec4bb905d4d266d2f98b3af7a5><90ef3dec4bb905d4d266d2f98b3af7a5>]
-% ReportLab generated PDF document -- digest (opensource)
-
-/Info 13 0 R
-/Root 12 0 R
-/Size 17
+/Size 19
+/Root 3 0 R
+/Info 1 0 R
 >>
 startxref
-8935
+26302
 %%EOF
