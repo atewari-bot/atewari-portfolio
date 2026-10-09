@@ -41,7 +41,7 @@ endobj
 endobj
 5 0 obj
 <<
-/Length 10280
+/Length 10277
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -155,35 +155,35 @@ q
 1 0 0 1 45.6 572.3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed, built, and launched a new subscription service from 0 to 1 within weeks of joining, scaling it to process 34 million) Tj T* 8 0 Td (events per day as adoption grew.) Tj T* ET
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led the team to design, build, and launch the agentic workflow platform from 0 to 1 within weeks of joining, scaling it to) Tj T* 8 0 Td (process 34 million events per day as adoption grew.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 536.1 cm
-q
-0 0 0 rg
-BT 1 0 0 1 14 25.7 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Architected and developed AWP Yoda, a suite of tools for end-to-end testing, usage adoption dashboard, regression testing,) Tj T* 8 0 Td (A/A testing and A/B testing at scale, from the ground up; adopted by multiple consumer teams, with rollout to additional) Tj T* (teams underway.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 45.6 511.8 cm
+1 0 0 1 45.6 548 cm
 q
 0 0 0 rg
-BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Built an end-to-end BDD smoke test suite that gates PRs and deployments by verifying the AWP platform works across every) Tj T* 8 0 Td (environment, catching issues before customers do.) Tj T* ET
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Architected and built Yoda, a testing and analytics suite: automated end-to-end and regression testing for QA, adoption dashboards) Tj T* 8 0 Td (and A/B experiments for product managers, and clear, data-driven visibility into impact for leadership.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 487.5 cm
+1 0 0 1 45.6 523.7 cm
+q
+0 0 0 rg
+BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Built an end-to-end BDD smoke test suite that gates PRs and deployments by verifying the agentic workflow platform works across) Tj T* 8 0 Td (every environment, catching issues before customers do.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.6 499.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td ( Built PR Sentry, a multi-model AI code reviewer deployed as a reusable GitHub Action, adopted by Xero repositories as a) Tj T* 8 0 Td (change-management control for pull requests.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 483 cm
+1 0 0 1 45.6 494.9 cm
 Q
 q
-1 0 0 1 39.6 470.5 cm
+1 0 0 1 39.6 482.4 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -206,7 +206,7 @@ Q
 Q
 Q
 q
-1 0 0 1 39.6 458.5 cm
+1 0 0 1 39.6 470.4 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -229,52 +229,52 @@ Q
 Q
 Q
 q
-1 0 0 1 45.6 434.7 cm
+1 0 0 1 45.6 446.6 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to design and develop conversational agent components powered by generative and agentic AI, including model) Tj T* 8 0 Td (evaluation pipelines and semantic caching, utilizing end-to-end regression pipelines to ensure robustness.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 410.4 cm
+1 0 0 1 45.6 422.3 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Architected and implemented distributed systems and cloud-native microservices using Docker and Kubernetes on AWS,) Tj T* 8 0 Td (leveraging Python with strong software design principles.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 386.1 cm
+1 0 0 1 45.6 398 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td -0.027 Tw (\177 Led a team to build a multi-turn dialog manager for media and IoT queries, orchestrating agentic workflows that enhanced user) Tj T* 0 Tw 8 0 Td (experience.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 373.7 cm
+1 0 0 1 45.6 385.6 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented caching strategy using Redis to optimize cloud costs, reducing downstream service traffic by 9%.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 361.3 cm
+1 0 0 1 45.6 373.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Drove improvements in user engagement for voice music queries, achieving a 7% increase.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 348.9 cm
+1 0 0 1 45.6 360.8 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led cross-functional initiative to boost engagement for sports and live channels.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 344.4 cm
+1 0 0 1 45.6 356.3 cm
 Q
 q
-1 0 0 1 39.6 331.9 cm
+1 0 0 1 39.6 343.8 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -297,7 +297,7 @@ Q
 Q
 Q
 q
-1 0 0 1 39.6 319.9 cm
+1 0 0 1 39.6 331.8 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -320,52 +320,52 @@ Q
 Q
 Q
 q
-1 0 0 1 45.6 296.1 cm
+1 0 0 1 45.6 308 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to deliver scalable backend microservices for billing on AWS using Python and Domain-Driven Design, which) Tj T* 8 0 Td (reduced billing processing latency and improved system reliability) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 283.7 cm
+1 0 0 1 45.6 295.6 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and launched an Entitlement Management System to handle hundreds of entitlements across diverse products.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 259.4 cm
+1 0 0 1 45.6 271.3 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Optimized batch usage counting system to process billions of events from 1500+ enterprise accounts, streamlining evaluation) Tj T* 8 0 Td (of Monthly Unique Visitors and Impressions.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 247 cm
+1 0 0 1 45.6 258.9 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Built an automated GDPR compliance platform to efficiently manage customer Subject Access Requests.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 234.6 cm
+1 0 0 1 45.6 246.5 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Developed backend APIs for impressions usage counting and billing visualization, enhancing reporting capabilities.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 210.3 cm
+1 0 0 1 45.6 222.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Championed tech debt reduction initiatives to improve platform performance, scalability, and adaptability, enabling 2x) Tj T* 8 0 Td (business growth through agile practices.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 205.8 cm
+1 0 0 1 45.6 217.7 cm
 Q
 q
-1 0 0 1 39.6 193.3 cm
+1 0 0 1 39.6 205.2 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -388,7 +388,7 @@ Q
 Q
 Q
 q
-1 0 0 1 39.6 181.3 cm
+1 0 0 1 39.6 193.2 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -411,45 +411,45 @@ Q
 Q
 Q
 q
-1 0 0 1 45.6 169.4 cm
+1 0 0 1 45.6 181.3 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Optimized cost sheet component performance, reducing summary record update performance \(O\(n\) to O\(k\)\).) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 157 cm
+1 0 0 1 45.6 168.9 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Implemented bulk print functionality, reducing business processes documents print time by 80%.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 144.6 cm
+1 0 0 1 45.6 156.5 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Redesigned end-to-end line items consolidation, which resulted in 60% latency improvement.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 120.3 cm
+1 0 0 1 45.6 132.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed, built, and unit-tested backend APIs for web-based cost sheet components with Java and MySQL, delivering more) Tj T* 8 0 Td (reliable data handling for downstream services) Tj T* ET
 Q
 Q
 q
-1 0 0 1 45.6 107.9 cm
+1 0 0 1 45.6 119.8 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 1.9 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Designed and developed reusable attachment picker component for file uploads.) Tj T* 8 0 Td ET
 Q
 Q
 q
-1 0 0 1 45.6 103.4 cm
+1 0 0 1 45.6 115.3 cm
 Q
 q
-1 0 0 1 39.6 90.9 cm
+1 0 0 1 39.6 102.8 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -472,7 +472,7 @@ Q
 Q
 Q
 q
-1 0 0 1 39.6 78.9 cm
+1 0 0 1 39.6 90.8 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -495,7 +495,7 @@ Q
 Q
 Q
 q
-1 0 0 1 45.6 55.1 cm
+1 0 0 1 45.6 67 cm
 q
 0 0 0 rg
 BT 1 0 0 1 14 13.8 Tm /F2 10 Tf 11.9 TL -8 0 Td (\177 Led a team to implement REST-based microservices APIs for Kafka producer/consumer using Docker containers, enabling) Tj T* 8 0 Td (faster deployment and more reliable message processing) Tj T* ET
@@ -1180,19 +1180,19 @@ xref
 0000000237 00000 n 
 0000000303 00000 n 
 0000000532 00000 n 
-0000010865 00000 n 
-0000010927 00000 n 
-0000011034 00000 n 
-0000011143 00000 n 
-0000011251 00000 n 
-0000011362 00000 n 
-0000011553 00000 n 
-0000014756 00000 n 
-0000014778 00000 n 
-0000014969 00000 n 
-0000015162 00000 n 
-0000015361 00000 n 
-0000015562 00000 n 
+0000010862 00000 n 
+0000010924 00000 n 
+0000011031 00000 n 
+0000011140 00000 n 
+0000011248 00000 n 
+0000011359 00000 n 
+0000011550 00000 n 
+0000014753 00000 n 
+0000014775 00000 n 
+0000014966 00000 n 
+0000015159 00000 n 
+0000015358 00000 n 
+0000015559 00000 n 
 trailer
 <<
 /Size 19
@@ -1200,5 +1200,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-26302
+26299
 %%EOF

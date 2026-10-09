@@ -278,13 +278,14 @@ export default function VisitorModal() {
       if (json.id) {
         visitorIdRef.current = json.id
         setVisitorId(json.id)
-        writeSession({ id: json.id, done: false, name: assigned, emoji: assignedEmoji })
+        // Name prompt is disabled: keep the assigned alias, same as pressing Esc to skip
+        writeSession({ id: json.id, done: true, name: assigned, emoji: assignedEmoji })
         connectToPusher(json.id)
       }
       if (json.returning) setReturning(true)
     } catch { /* fail silently */ }
 
-    setVisible(true)
+    setBrowsingName(assigned)
   }, [connectToPusher])
 
   // Detect mobile/touch so we can center the modal instead of cursor-following
